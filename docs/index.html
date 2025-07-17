@@ -4,501 +4,1132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jincheng Li（理锦诚）</title>
-    <link rel="icon" href="https://pub-d7cec217f798427cbe9e5351658a240c.r2.dev/2025/07/035483c379fda704d1e01ac801fbe32d.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="https://pub-d7cec217f798427cbe9e5351658a240c.r2.dev/2025/07/0f721bb41cb5e018db76b3243b631162.ico" type="image/x-icon">
-    <link rel="icon" type="image/ico" sizes="32x32" href="https://pub-d7cec217f798427cbe9e5351658a240c.r2.dev/2025/07/a6026de50b9d07ef1bf1dd616d21dfd6.ico">
-    <link rel="icon" type="image/ico" sizes="16x16" href="https://pub-d7cec217f798427cbe9e5351658a240c.r2.dev/2025/07/2d522bab9e4a7f0b1420b8c0f19122ef.ico">
+    <link rel="icon" href="https://github.com/li00000011/li00000011/blob/main/picture/256x256.ico?raw=true" type="image/x-icon">
+    <link rel="shortcut icon" href="https://github.com/li00000011/li00000011/blob/main/picture/128x128.ico?raw=true" type="image/x-icon">
+    <link rel="icon" type="image/ico" sizes="32x32" href="https://github.com/li00000011/li00000011/blob/main/picture/32x32.ico?raw=true">
+    <link rel="icon" type="image/ico" sizes="16x16" href="https://github.com/li00000011/li00000011/blob/main/picture/16x16.ico?raw=true">
     <link rel="manifest" href="/site.webmanifest">
-    <!-- 引入 Tailwind CSS CDN -->
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- 引入 MiSans 字体 CDN (这是一个支持多种语言的全球性字体) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.1.0/lib/Latin/MiSansLatin-Medium.min.css">
-    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* 全局字体设置 */
-        /* 使用 MiSans 作为唯一的全局字体，因为它支持多种语言 */
+        /* 用于微调和特定设计元素的自定义 CSS */
+        @import url('https://cdn.jsdelivr.net/npm/misans@4.1.0/lib/Latin/MiSansLatin-Medium.min.css');
+
         body {
-            font-family: 'MiSans', sans-serif; /* MiSans 作为首选字体，sans-serif 作为备用 */
-            scroll-behavior: smooth; /* 平滑滚动效果 */
+            font-family: 'MiSans', sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 1rem;
+            overflow-x: hidden;
         }
 
-        /* 隐藏 body 滚动条但允许滚动 */
-        body::-webkit-scrollbar {
-            display: none; /* 对于 WebKit 浏览器 */
-        }
-        body {
-            -ms-overflow-style: none;  /* 对于 IE 和 Edge */
-            scrollbar-width: none;  /* 对于 Firefox */
-        }
-        /* 导航栏激活状态样式 (通过 JS 添加) */
-        .nav-link.active {
-            color: #2563EB; /* text-blue-600 */
-            font-weight: 600; /* font-semibold */
-        }
-
-        /* 自定义美化滑动条 */
+        /* 自定义美化滚动条 */
         .custom-scrollbar::-webkit-scrollbar {
-            height: 8px; /* 水平滚动条的高度 */
-            width: 8px; /* 垂直滚动条的宽度 (这里主要用于水平滑动，但定义垂直也无妨) */
+            width: 6px;
         }
 
         .custom-scrollbar::-webkit-scrollbar-track {
-            background: #e0e0e0; /* 滚动条轨道背景色 */
-            border-radius: 4px;
+            background: transparent;
         }
 
         .custom-scrollbar::-webkit-scrollbar-thumb {
-            background-color: #9e9e9e; /* 滚动条滑块颜色 */
-            border-radius: 4px;
-            border: 2px solid #e0e0e0; /* 滑块边框，使其与轨道有区分 */
+            background: #d1d5db;
+            border-radius: 10px;
         }
 
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background-color: #757575; /* 滑块悬停颜色 */
+            background: #9ca3af;
         }
 
-        /* Firefox 浏览器兼容 */
-        .custom-scrollbar {
-            scrollbar-width: thin; /* 'auto' 或 'thin' */
-            scrollbar-color: #9e9e9e #e0e0e0; /* 滑块颜色 轨道颜色 */
+        /* 页面内容包装器 */
+        .page-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            max-width: 1400px; 
         }
 
-        /* 无缝滚动动画 */
+        /* 主卡片尺寸与响应式 */
+        .main-card {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            position: relative;
+            width: 100%;
+            max-width: 1400px; /* 进一步增大卡片的最大宽度 */
+            min-width: 320px;
+            height: 95vh; /* 保持卡片的高度不变 */
+            max-height: 800px; /* 保持卡片的最大高度不变 */
+            min-height: 650px; /* 保持卡片的最小高度不变 */
+            margin-right: 88px;
+            /* New: Page entrance animation */
+            opacity: 0; /* Start invisible */
+            animation: pageFadeInScale 0.8s ease-out forwards; /* Apply animation */
+        }
+
+        /* Left Panel (Profile) */
+        .left-panel {
+            background: linear-gradient(135deg, #34d399, #3b82f6);
+        }
+
+        /* Side navigation container positioning */
+        .sidebar-nav {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: white;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem;
+            z-index: 50;
+            display: none;
+        }
+        
+        @media (min-width: 961px) {
+            .sidebar-nav {
+                display: block;
+            }
+            #pagination-controls {
+                display: flex;
+            }
+        }
+
+        /* Pagination buttons container positioning */
+        #pagination-controls {
+            position: absolute;
+            right: 0;
+            bottom: 2rem;
+            z-index: 50;
+            display: none;
+            gap: 1rem;
+            width: 52px;
+            justify-content: center;
+        }
+
+        /* Navigation indicator style */
+        .nav-indicator {
+            position: absolute;
+            background-color: #e5e7eb;
+            border-radius: 9999px;
+            transition: all 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+            z-index: -1;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Icon style */
+        .nav-icon {
+            color: #9ca3af;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nav-icon:not(.active):hover {
+            color: #4b5563;
+        }
+
+        .nav-icon.active {
+            color: #3b82f6;
+        }
+
+        /* Tooltip style and alignment */
+        .nav-tooltip {
+            position: absolute;
+            right: calc(100% + 1rem);
+            top: 50%;
+            background-color: white;
+            color: #6b7280;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transform: translate(10px, -50%);
+            transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+            z-index: 10;
+        }
+
+        .nav-icon:hover .nav-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(0, -50%);
+        }
+
+        /* Right panel and section animation style */
+        .right-panel {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .right-panel section {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 2.5rem; /* Increased padding */
+            box-sizing: border-box;
+            overflow-y: auto;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s cubic-bezier(0.86, 0, 0.07, 1), transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+            z-index: 1;
+        }
+
+        .right-panel section.active-section {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateX(0);
+            z-index: 2;
+        }
+
+        /* Hamburger menu animation */
+        .hamburger-menu span {
+            transition: all 0.3s ease-in-out;
+            display: block;
+        }
+
+        .hamburger-menu.open span:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        .hamburger-menu.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.open span:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+        
+        /* Keyframes for the new page entrance animation */
+        @keyframes pageFadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.98); /* Slightly scaled down at start */
+            }
+            to {
+                opacity: 1;
+                transform: scale(1); /* Full size at end */
+            }
+        }
+
+        /* Custom avatar rounded rectangle for a smoother curve */
+        .avatar-custom-rounded {
+            border-radius: 20px; /* 略小于主卡片的圆角，使其更协调 */
+        }
+
+        /* Timeline styles (General) */
+        .timeline {
+            position: relative;
+            padding-left: 0; 
+            margin-left: 50px; /* 整体向右移动，为左侧年份和线留出空间 */
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0; /* 垂直线在最左侧 */
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #cbd5e0; /* Light gray line */
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem; /* Space between items */
+            padding-left: 25px; /* Space for the circle and event text */
+            display: flex; /* 使用flexbox布局 */
+            align-items: flex-start; /* 顶部对齐 */
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -5px; /* 圆圈在垂直线上居中 */
+            top: 5px; /* Adjust vertical alignment of circle */
+            width: 12px;
+            height: 12px;
+            background-color: #e0f2fe; /* Light blue circle background */
+            border: 2px solid #3b82f6; /* Blue circle border */
+            border-radius: 50%;
+            z-index: 10;
+        }
+
+        .timeline-year {
+            position: absolute; /* 绝对定位年份 */
+            left: -58px; /* 将年份移到垂直线的左侧 */
+            top: 0px; /* 与圆圈对齐 */
+            font-weight: 500;
+            color: #4a5568; /* Darker text for year */
+            white-space: nowrap; /* 防止年份换行 */
+            font-size: 0.9rem; /* 调整字体大小 */
+        }
+
+        .timeline-event {
+            color: #2d3748; /* Even darker text for event */
+            font-size: 1rem;
+            line-height: 1.4;
+            font-weight: 500; /* 事件文本加粗 */
+            flex-grow: 1; /* 允许事件内容填充剩余空间 */
+        }
+
+        .timeline-event a {
+            color: #3b82f6; /* 链接颜色 */
+            text-decoration: none; /* 移除下划线 */
+        }
+
+        .timeline-event a:hover {
+            text-decoration: underline; /* 鼠标悬停时显示下划线 */
+        }
+
+        /* Add cursor pointer to zoomable images */
+        #awards .timeline-year img {
+            cursor: zoom-in;
+        }
+
+        /* START: Specific styles for Awards timeline to fix image overflow */
+        #awards .timeline {
+            margin-left: 20%; /* 恢复整体20%的左边距，实现缩进 */
+        }
+
+        #awards .timeline-item {
+            /* 移除默认的左内边距，因为我们将手动控制间距 */
+            padding-left: 0;
+        }
+
+        #awards .timeline-year {
+            /* 覆盖通用样式，使其参与flex布局，以便高度自适应 */
+            position: static; 
+            
+            /* 使用负外边距将其拉到时间轴线的左侧 */
+            margin-left: -80px; /* (图片宽度 + 间距) */
+            margin-right: 50px; /* 年份/图片与事件文本之间的间距 */
+
+            /* 布局属性 */
+            width: 60px;        /* 为年份/图片容器设置固定宽度 */
+            text-align: center; /* 居中内容 */
+            flex-shrink: 0;     /* 防止容器被压缩 */
+        }
+        /* END: Specific styles for Awards timeline */
+
+        /* Publications Section Specific Timeline Styles */
+        #publications .timeline {
+            margin-left: 130px; /* 增加Publications时间轴的左边距，进一步向右移动 */
+        }
+
+        #publications .timeline::before {
+            left: 0; /* 确保垂直线位置不变 */
+        }
+
+        #publications .timeline-item {
+            padding-left: 20px; /* 圆圈和右侧内容之间的间距 */
+        }
+
+        #publications .timeline-item::before {
+            left: -6px; /* 确保圆圈与垂直线对齐 */
+        }
+
+        #publications .timeline-year {
+            left: -110px; /* 调整 left 值以确保左侧文字右边缘距离垂直线 20px (width 70px + gap 20px) */
+            width: 90px; /* 增加年份的显示宽度，以适应更长的全称 */
+            text-align: right; /* 右对齐 */
+            font-size: 1rem; /* 调整字体大小，使其更显眼 */
+        }
+
+        .timeline-full-name {
+            font-size: 0.7rem; /* 全称字体更小，允许换行 */
+            color: #9ca3af;
+            font-weight: 400;
+            white-space: normal; /* 全称允许换行 */
+            line-height: 1.2;
+        }
+
+        #publications .timeline-event {
+            flex-grow: 1;
+            margin-left: 8px; /* 确保右侧内容与圆圈有足够间距 (20px) */
+            color: #2d3748;
+            font-size: 1rem;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        /* Contact Section Specific Styles */
+        .contact-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* shadow-md */
+            padding: 1.5rem; /* p-6 */
+            display: flex;
+            align-items: center;
+            gap: 1rem; /* space-x-4 */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-card .icon {
+            color: #3b82f6; /* text-blue-500 */
+            font-size: 1.75rem; /* text-3xl */
+            flex-shrink: 0;
+        }
+
+        .contact-card .text {
+            color: #4b5563; /* text-gray-700 */
+            font-weight: 500; /* font-medium */
+        }
+
+        .map-container {
+            border-radius: 0.75rem; /* rounded-xl */
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* shadow-md */
+            width: 100%;
+            height: 400px; /* Fixed height for the map */
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* START: Gallery Scroll Animation Styles */
         @keyframes scroll {
             from {
                 transform: translateX(0);
             }
             to {
-                transform: translateX(-50%); /* 滚动到复制内容的一半，即原始内容的末尾 */
+                transform: translateX(-50%); /* Scroll to the end of the original content */
             }
         }
 
         .scrolling-wrapper {
             display: flex;
-            animation: scroll 40s linear infinite; /* 动画时长可根据图片数量调整 */
+            animation: scroll 40s linear infinite;
         }
 
         #gallery-container:hover .scrolling-wrapper {
-            animation-play-state: paused; /* 鼠标悬停时暂停动画 */
+            animation-play-state: paused; /* Pause animation on hover */
         }
+        /* END: Gallery Scroll Animation Styles */
 
-        /* 图片放大模态框样式 */
-        .modal-active {
-            overflow: hidden; /* 防止背景滚动 */
+
+        @media (max-width: 960px) {
+            .main-card {
+                flex-direction: column;
+                height: auto;
+                width: 100%;
+                max-height: none;
+                margin-right: 0;
+            }
+            .left-panel {
+                border-radius: 1.5rem 1.5rem 0 0;
+            }
+            .right-panel {
+                border-radius: 0 0 1.5rem 1.5rem;
+                height: auto;
+                position: relative;
+                overflow-y: visible;
+            }
+            .right-panel section {
+                position: relative;
+                height: auto;
+                overflow-y: visible;
+                opacity: 1;
+                pointer-events: auto;
+                transform: none;
+                transition: none;
+            }
+            .right-panel section.hidden {
+                display: none;
+            }
+            /* 移动端头像尺寸调整 */
+            .left-panel .w-56 { /* 针对左侧面板中的头像宽度 */
+                width: 180px; /* 移动端较小宽度 */
+            }
+            .left-panel .h-42 { /* 针对左侧面板中的头像高度 */
+                height: 135px; /* 保持4:3长高比 */
+            }
+            .left-panel .avatar-custom-rounded {
+                border-radius: 15px; /* 移动端圆角调整 */
+            }
+            /* 移动端两栏布局调整 */
+            .lg\:flex-row {
+                flex-direction: column;
+            }
+            .lg\:space-x-8 {
+                margin-left: 0;
+            }
+            /* Ensure both columns are full width on small screens */
+            .lg\:w-1\/2 {
+                width: 100%;
+            }
+            .timeline {
+                padding-left: 0; /* Smaller padding for mobile */
+                margin-left: 40px; /* Adjust margin for mobile */
+            }
+            .timeline::before {
+                left: 0px; /* Adjust line position for mobile */
+            }
+            .timeline-item::before {
+                left: -6px; /* Adjust circle position for mobile */
+            }
+            .timeline-year {
+                left: -40px; /* Adjust year position for mobile */
+                font-size: 0.8rem;
+            }
+
+            /* Mobile specific adjustments for Publications timeline */
+            #publications .timeline {
+                margin-left: 80px; /* 移动端Publications时间轴的左边距 */
+            }
+            #publications .timeline-item {
+                padding-left: 20px; /* 移动端Publications时间轴的左侧内边距 */
+            }
+            #publications .timeline-year {
+                left: -70px; /* 移动端Publications时间轴年份位置 */
+                width: 50px; /* 移动端年份宽度 */
+                font-size: 0.7rem; /* 移动端年份字体大小 */
+            }
+            .timeline-full-name {
+                font-size: 0.6rem; /* 移动端全称字体更小 */
+            }
+            #publications .timeline-event {
+                margin-left: 15px; /* 移动端右侧内容间距 */
+                font-size: 0.9rem; /* 移动端右侧内容字体大小 */
+            }
+
+            /* Mobile specific adjustments for Contact section */
+            .contact-grid {
+                grid-template-columns: 1fr; /* Single column on mobile */
+            }
+            .map-container {
+                height: 300px; /* Smaller map height on mobile */
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 leading-relaxed">
-
-    <header class="bg-white shadow-sm fixed w-full z-50 py-4">
-        <nav class="container mx-auto px-6 flex justify-center items-center">
-            <ul class="flex flex-wrap gap-[clamp(0.5rem,2vw,3rem)] justify-center">
-                <li><a href="#about" class="nav-link text-gray-600 hover:text-blue-500 transition-colors duration-300 rounded-md py-2 px-3">About Me</a></li>
-                <li><a href="#education" class="nav-link text-gray-600 hover:text-blue-500 transition-colors duration-300 rounded-md py-2 px-3">Education</a></li>
-                <li><a href="#academic" class="nav-link text-gray-600 hover:text-blue-500 transition-colors duration-300 rounded-md py-2 px-3">Academic</a></li>
-                <li><a href="#honors" class="nav-link text-gray-600 hover:text-blue-500 transition-colors duration-300 rounded-md py-2 px-3">Honors</a></li>
-                <li><a href="#publications" class="nav-link text-gray-600 hover:text-blue-500 transition-colors duration-300 rounded-md py-2 px-3">Publications</a></li>
-                <li><a href="#patents" class="nav-link text-gray-600 hover:text-blue-500 transition-colors duration-300 rounded-md py-2 px-3">Patents</a></li>
-                <li><a href="#competitions" class="nav-link text-gray-600 hover:text-blue-500 transition-colors duration-300 rounded-md py-2 px-3">Competitions</a></li>
-                <li><a href="#gallery" class="nav-link text-gray-600 hover:text-blue-500 transition-colors duration-300 rounded-md py-2 px-3">Gallery</a></li>
-            </ul>
-        </nav>
-    </header>
-
-
-    <main class="pt-20"> <!-- 留出导航栏的高度 -->
-
-        <!-- 关于我 (About Me) -->
-        <section id="about" class="py-16 md:py-24 bg-gradient-to-br from-blue-50 to-indigo-100">
-            <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
-                <!-- 个人照片 -->
-                <div class="flex-shrink-0">
-                    <img src="https://pub-d7cec217f798427cbe9e5351658a240c.r2.dev/2025/07/d73e1b4d776a5c6484477f18974eb8e5.png" alt="Personal Photo" class="w-48 h-48 md:w-64 md:h-64 rounded-full shadow-lg object-cover border-4 border-white transform hover:scale-105 transition-transform duration-300">
+<body class="font-inter bg-gray-100 flex items-center justify-center min-h-screen p-4">
+    <div class="page-container">
+        <!-- Main container -->
+        <div class="main-card bg-white rounded-3xl overflow-hidden flex flex-col lg:flex-row">
+            <!-- Left Panel (Profile) -->
+            <div class="left-panel w-full lg:w-[30%] p-8 flex flex-col items-center justify-center text-white rounded-t-3xl lg:rounded-l-3xl lg:rounded-tr-none relative text-center">
+                <!-- 头像容器：已修改为4:3长高比、自定义圆角和阴影 -->
+                <div class="relative w-56 h-42 overflow-hidden border-4 border-white mb-6 mt-10 avatar-custom-rounded shadow-xl">
+                    <img src="https://github.com/li00000011/li00000011/blob/main/picture/ljcphoto.png?raw=true" alt="Jincheng Li" class="w-full h-full object-cover">
                 </div>
-                <!-- 个人信息 -->
-                <div class="text-center md:text-left max-w-2xl">
-                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Jincheng Li</h1>
-                    <p class="text-xl md:text-2xl text-blue-700 font-medium mb-4">Undergraduate student from Nantong University</p>
-                    <p class="text-gray-700 text-lg md:text-xl leading-relaxed">
-                        "The path steadies when I'm sincere." 
+                <h1 class="text-4xl font-bold mb-2">Jincheng Li</h1>
+                <p class="text-lg font-light mb-4">理锦诚</p>
+                <p class="text-md italic mb-8">"The path steadies when I'm sincere."</p>
+                <div class="flex space-x-6 mb-12">
+                    <a href="mailto:2330110412@stmail.ntu.edu.cn" target="_blank" class="text-white hover:text-gray-200 text-2xl transition-colors duration-200"><i class="fas fa-envelope"></i></a>
+                    <a href="https://github.com/li00000011" target="_blank" class="text-white hover:text-gray-200 text-2xl transition-colors duration-200"><i class="fab fa-github"></i></a>
+                    <a href="https://orcid.org/0009-0008-1858-8048" target="_blank" class="text-white hover:text-gray-200 text-2xl transition-colors duration-200"><i class="fab fa-orcid"></i></a>
+                </div>
+                <p class="text-sm text-gray-200 mt-auto mb-4">© 2025. All rights reserved.</p>
+            </div>
+
+            <!-- Right Panel (Content) -->
+            <div class="right-panel relative w-full lg:w-[70%] bg-white rounded-b-3xl lg:rounded-r-3xl lg:rounded-bl-none overflow-hidden">
+                <!-- Homepage Section -->
+                <section id="homepage" class="custom-scrollbar flex flex-col items-center justify-center text-center p-8">
+                    <h2 class="text-6xl lg:text-5xl font-bold text-gray-900 mb-4 animate-fade-in-up">
+                        Code is cheap.
+                    </h2>
+                    <p class="text-6xl lg:text-5xl font-bold text-gray-900 mb-6 animate-fade-in-up delay-100">
+                        Show me your prompt!
                     </p>
-                    <div class="mt-6 flex flex-wrap justify-center md:justify-start gap-4">
-                        <!-- 邮箱链接 -->
-                        <a href="mailto:2330110412@stmail.ntu.edu.cn" target="_blank" class="bg-blue-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105 flex items-center justify-center text-sm md:text-base">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5170">
-                            <path d="M970.56 267.52a85.76 85.76 0 0 0 0-10.24v-2.88l-17.92 1.6 15.68-3.84v-3.52A141.44 141.44 0 0 0 960 227.2a128 128 0 0 0-11.2-20.48 123.84 123.84 0 0 0-103.04-54.72H176.96a123.84 123.84 0 0 0-102.72 55.36 128 128 0 0 0-11.84 22.72 124.8 124.8 0 0 0-6.72 22.72l16 3.2h-16.64a81.92 81.92 0 0 0-1.6 11.84v512a124.48 124.48 0 0 0 124.16 124.16h668.8a124.48 124.48 0 0 0 124.16-124.16v-512zM883.2 304v448a64 64 0 0 1-64 64H205.12a64 64 0 0 1-64-64v-448a64 64 0 0 1 1.92-16l334.4 267.84 2.56 3.2a48.96 48.96 0 0 0 26.88 11.84h6.08a42.24 42.24 0 0 0 31.04-11.84L880.96 288a62.08 62.08 0 0 1 2.24 16zM512 472.96l-290.88-233.6h581.76z" p-id="6233" fill="#ffffff"></path>
+                    <p class="text-md text-[20px] text-gray-500 font-light italic mb-20 animate-fade-in-up delay-200">
+                        当我真诚，路自平稳。
+                    </p>
+
+                    <!-- Itinerary Display Box -->
+                    <div class="itinerary-box bg-gradient-to-br from-blue-50 to-indigo-100 p-6 rounded-2xl shadow-xl border border-blue-200 w-full max-w-3xl animate-fade-in-up delay-10 transform transition-all duration-500 hover:scale-105 hover:shadow-2xl">
+                        <div class="flex items-center justify-center mb-4">
+                            <svg class="w-10 h-10 text-blue-500 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
-                            Email
-                        </a>
-                        <!-- GitHub 链接 -->
-                        <a href="https://github.com/li00000011" target="_blank" class="bg-gray-700 text-white py-2 px-4 rounded-lg shadow-md hover:bg-gray-800 transition-colors duration-300 transform hover:scale-105 flex items-center justify-center text-sm md:text-base">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5170">
-                            <path d="M511.6 76.3C264.3 76.2 64 276.4 64 523.5 64 718.9 189.3 885 363.8 946c23.5 5.9 19.9-10.8 19.9-22.2v-77.5c-135.7 15.9-141.2-73.9-150.3-88.9C215 726 171.5 718 184.5 703c30.9-15.9 62.4 4 98.9 57.9 26.4 39.1 77.9 32.5 104 26 5.7-23.5 17.9-44.5 34.7-60.8-140.6-25.2-199.2-111-199.2-213 0-49.5 16.3-95 48.3-131.7-20.4-60.5 1.9-112.3 4.9-120 58.1-5.2 118.5 41.6 123.2 45.3 33-8.9 70.7-13.6 112.9-13.6 42.4 0 80.2 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.3-43.9 2.9 7.7 24.7 58.3 5.5 118 32.4 36.8 48.9 82.7 48.9 132.3 0 102.2-59 188.1-200 212.9 23.5 23.2 38.1 55.4 38.1 91v112.5c0.8 9 0 17.9 15 17.9 177.1-59.7 304.6-227 304.6-424.1 0-247.2-200.4-447.3-447.5-447.3z" p-id="5171" fill="#ffffff"></path>
-                            </svg>
-                            GitHub
-                        </a>
-                        <!-- ORCID 链接 -->
-                        <a href="https://orcid.org/0009-0008-1858-8048" target="_blank" class="bg-[#a6ce39] text-white hover:bg-[#94b330] py-2 px-4 rounded-lg shadow-md transition-colors duration-300 transform hover:scale-105 flex items-center justify-center text-sm md:text-base">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5170">
-                            <path d="M512 0C229.216 0 0 229.216 0 512s229.216 512 512 512 512-229.216 512-512S794.784 0 512 0zM314.4 186.784c22.4 0 40.416 18.4 40.416 40.416s-18.016 40.416-40.416 40.416a40.544 40.544 0 0 1-40.416-40.384c0-22.4 18.016-40.416 40.416-40.416z m-30.784 129.632h61.6v428.416H283.616z m151.968 0h166.4c158.368 0 228 113.184 228 214.4 0 109.984-86.016 214.4-227.2 214.4h-167.2z m61.6 55.584v317.6H595.2c139.616 0 171.616-105.984 171.616-158.816 0-86.016-54.784-158.816-174.816-158.816z" fill="#ffffff" p-id="7764"></path>
-                            </svg>
-                            ORCID
-                        </a>
+                            <span class="text-2xl font-bold text-blue-700 ml-3">Upcoming Journey</span>
+                        </div>
+                        <p class="text-lg text-gray-800 mb-3">
+                            <i class="fas fa-calendar-alt text-blue-500 mr-2"></i> <span class="font-semibold">September 24-26, 2025</span>, Daejeon, South Korea
+                        </p>
+                        <p class="text-md text-[16px] text-gray-700 leading-relaxed text-justify mt-2">
+                            I will attend the on-site session of MICCAI '25 in Daejeon, South Korea, from September 24th to 26th, 2025. If you are also in Daejeon and would like to have a chat over a cup of coffee, feel free to contact me! 👋☕
+                        </p>
                     </div>
-                </div>
-            </div>
-        </section>
+                </section>
 
-        <!-- 教育经历 (Education) - 保持不变 -->
-        <section id="education" class="py-16 md:py-24 bg-white">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">Education</h2>
-                <div class="flex justify-center">
-                    <div class="bg-gray-50 p-8 rounded-xl shadow-md border border-gray-200 transform hover:scale-[1.02] transition-transform duration-300 flex items-start justify-between max-w-xl w-full">
-                        <div class="flex-grow">
-                            <h3 class="text-2xl font-semibold text-blue-700 mb-2">Nantong University</h3>
-                            <p class="text-lg text-gray-700 mb-1">Major: Computer Science</p>
-                            <p class="text-md text-gray-600 mb-3">Degree: Bachelor (Expected June 2027)</p>
-                            <p class="text-md text-gray-500">2023.09 - 2027.06</p>
-                        </div>
-                        <div class="flex-shrink-0 ml-4">
-                            <img src="https://pub-d7cec217f798427cbe9e5351658a240c.r2.dev/2025/07/522e2d2cdd0c00b7353d77e69f0e31f4.png" alt="Nantong University" class="w-20 h-20 object-contain rounded-full border border-gray-200">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+                <!-- About Me Section -->
+                <section id="about" class="hidden custom-scrollbar">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">About Me</h2>
+                    <div class="flex flex-col lg:flex-row lg:space-x-8">
+                        <!-- Left Column for Text and Services Timeline -->
+                        <div class="lg:w-1/2 w-full text-gray-700 leading-relaxed text-base mb-8 lg:mb-0">
+                            <p class="mb-4">I was born and raised in Nanjing, China. Currently, I am pursuing a bachelor's degree at School of Artificial Intelligence and Computer Science, Nantong University, and I am fortunate to be supervised by Associate Professor <a href="https://ai.ntu.edu.cn/2024/0817/c9718a246534/page.htm" class="text-blue-600 hover:underline">Yuehua Li</a> and Lecturer <a href="https://ai.ntu.edu.cn/2024/0817/c9718a246568/page.htm" class="text-blue-600 hover:underline">Lili Zhao</a>.</p>
+                            <p class="mb-4">My research interests include embedded artificial intelligence, computational pathology, and uncertainty quantification. Currently, I serve as a reviewer for PRCV’25 and also act as the leader of DeepLearner, a university-level organization.</p>
+                            
+                            <!-- New image section: Each image in its own row, full width -->
+                            <div class="mt-8 flex flex-col items-start space-y-4">
+                                <img src="https://github.com/li00000011/li00000011/blob/main/picture/ntu.png?raw=true" alt="Nantong University Logo" class="w-full h-auto shadow-md rounded-lg">
+                                <img src="https://github.com/li00000011/li00000011/blob/main/picture/aiacs.png?raw=true" alt="AIACS Logo" class="w-full h-auto shadow-md rounded-lg">
+                                <img src="https://github.com/li00000011/li00000011/blob/main/picture/deeplearner.png?raw=true" alt="DeepLearner Logo" class="w-full h-auto shadow-md rounded-lg">
+                            </div>
 
-        <!-- 学术 (Academic) -->
-        <section id="academic" class="py-16 md:py-24 bg-gray-100">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">Academic</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- 卡片 1: Supervisor -->
-                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 transform hover:scale-[1.01] transition-transform duration-300">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Supervisor</h3>
-                        <div class="flex flex-wrap gap-3">
-                            <a href="https://ai.ntu.edu.cn/2024/0817/c9718a246534/page.htm" target="_blank" class="inline-flex items-center bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full transform hover:scale-105 transition-transform duration-300 hover:underline">Assoc. Prof. Yuehua Li（李跃华）</a>
-                            <a href="https://ai.ntu.edu.cn/2024/0817/c9718a246568/page.htm" target="_blank" class="inline-flex items-center bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full transform hover:scale-105 transition-transform duration-300 hover:underline">Lecturer Lili Zhao（赵理莉）</a>
                         </div>
-                    </div>
-                    <!-- 卡片 2: Research Interests -->
-                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 transform hover:scale-[1.01] transition-transform duration-300">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Research Interests</h3>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="bg-green-100 text-green-800 text-sm font-medium px-4 py-2 rounded-full transform hover:scale-105 transition-transform duration-300">Computer Vision</span>
-                            <span class="bg-green-100 text-green-800 text-sm font-medium px-4 py-2 rounded-full transform hover:scale-105 transition-transform duration-300">Embedded AI</span>
-                            <span class="bg-green-100 text-green-800 text-sm font-medium px-4 py-2 rounded-full transform hover:scale-105 transition-transform duration-300">Medical Imaging</span>
-                            <span class="bg-green-100 text-green-800 text-sm font-medium px-4 py-2 rounded-full transform hover:scale-105 transition-transform duration-300">Uncertainty Quantification</span>
-                        </div>
-                    </div>
-                    <!-- 卡片 3: Academic Services -->
-                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 transform hover:scale-[1.01] transition-transform duration-300">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Academic Services</h3>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="inline-flex items-center bg-purple-100 text-purple-800 text-sm font-medium px-4 py-2 rounded-full transform hover:scale-105 transition-transform duration-300">Reviewer, [PRCV 2025]</span>
-                            <span class="inline-flex items-center bg-purple-100 text-purple-800 text-sm font-medium px-4 py-2 rounded-full transform hover:scale-105 transition-transform duration-300">Reviewer, [EAAI]</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+                        <!-- Right Column for Personal Info & Hobbies -->
+                        <div class="lg:w-1/2 w-full">
+                            <div class="space-y-4">
+                                <div class="personal-info-item">
+                                    <span class="font-medium text-blue-600">Age </span> <span>20 🎂</span>
+                                </div>
+                                <div class="personal-info-item">
+                                    <span class="font-medium text-blue-600">Residence </span> <span>China</span>
+                                </div>
+                                <div class="personal-info-item">
+                                    <span class="font-medium text-blue-600">Address </span> <span>No. 9, Seyuan Road, Chongchuan District, Nantong, Jiangsu</span>
+                                </div>
+                                <div class="personal-info-item">
+                                    <span class="font-medium text-blue-600">E-mail </span> <span>2330110412@stmail.ntu.edu.cn 📧</span>
+                                </div>
+                            </div>
 
-        <!-- 荣誉 (Honors) -->
-        <section id="honors" class="py-16 md:py-24 bg-white">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">Honors</h2>
-                <div class="space-y-8">
-                    <!-- Honor Card 1 -->
-                    <div class="bg-gray-50 p-6 rounded-xl shadow-md border border-gray-200 transform hover:scale-[1.01] transition-transform duration-300 relative">
-                        <h4 class="text-xl font-semibold text-blue-700 mb-2">Nantong University CS Stars of Innovation</h4>
-                        <p class="text-md text-gray-600">Award Time: 2025.04</p>
-                        <div class="absolute top-4 right-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">Top 1%</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 出版物 (Publications) -->
-        <section id="publications" class="py-16 md:py-24 bg-gray-100">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">Publications</h2>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-                    <!-- Conference Papers -->
-                    <div>
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-6 text-center lg:text-left">Conference Papers</h3>
-                        <div class="space-y-8">
-                            <!-- Publication Card 1 -->
-                            <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 transform hover:scale-[1.01] transition-transform duration-300">
-                                <h4 class="text-xl font-semibold text-blue-700 mb-2">
-                                    <a href="https://conferences.miccai.org/2025/en/" target="_blank" class="hover:underline">
-                                        High-Precision Mixed Feature Fusion Network Using Hypergraph Computation for Cervical Abnormal Cell Detection
-                                    </a>
-                                </h4>
-                                <p class="text-md text-gray-600 mb-1">Conference: MICCAI 2025</p>
-                                <p class="text-md text-gray-500 mb-3">Publication Date: 2025.06</p>
-                                <p class="text-md text-gray-700 mb-3">Authors: <span class="font-bold text-blue-600">Jincheng Li</span>, Danyang Dong, Menglin Zheng, Jingbo Zhang, Yueqin Hang, Lichi Zhang, and Lili Zhao</p>
-                                <p class="text-gray-700 text-sm leading-relaxed">
-                                    Highlights: A hypergraph-enhanced fusion network that jointly models inter-cell spatial correlations and intra-cell discriminative features achieves state-of-the-art cervical abnormal cell detection on three public datasets.
-                                </p>
-                                <img src="https://pub-d7cec217f798427cbe9e5351658a240c.r2.dev/2025/07/06da3026564fe6af42356d29b3b5aee5.png" alt="Paper illustration" class="mt-4 rounded-lg shadow-md w-full object-cover">
+                            <div class="space-y-4 mt-8">
+                                <div class="hobby-item">
+                                    <span class="emoji">🏓</span> <span class="font-medium text-blue-600">Table Tennis</span>
+                                </div>
+                                <div class="hobby-item">
+                                    <span class="emoji">🏃‍♂️</span> <span class="font-medium text-blue-600">Running</span>
+                                </div>
+                                <div class="hobby-item">
+                                    <span class="emoji">🚴‍♀️</span> <span class="font-medium text-blue-600">Cycling</span>
+                                </div>
+                            </div>
+                            <!-- Services Timeline -->
+                            <div class="mt-8">
+                                <h3 class="text-2xl font-bold text-gray-800 mb-4">Services</h3>
+                                <div class="timeline">
+                                    <div class="timeline-item">
+                                        <div class="timeline-year">2025</div>
+                                        <div class="timeline-event">Co-Reviewer, PRCV'25</div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-year">2025</div>
+                                        <div class="timeline-event">Co-Reviewer, EAAI</div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-year">2025</div>
+                                        <div class="timeline-event">Reviewer, Journal of Supercomputing</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Journal Papers -->
-                    <div>
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-6 text-center lg:text-left">Journal Papers</h3>
-                        <div class="space-y-8">
-                            <!-- Publication Card 1 -->
-                            <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 transform hover:scale-[1.01] transition-transform duration-300">
-                                <h4 class="text-xl font-semibold text-blue-700 mb-2">
-                                    <a href="https://www.mdpi.com/1424-8220/25/2/534" target="_blank" class="hover:underline">
-                                        PC-CS-YOLO: High-Precision Obstacle Detection for Visually Impaired Safety
-                                    </a>
-                                </h4>
-                                <p class="text-md text-gray-600 mb-1">Journal: Sensors</p>
-                                <p class="text-md text-gray-500 mb-3">Publication Date: 2025.01</p>
-                                <p class="text-md text-gray-700 mb-3">Authors: <span class="font-bold text-blue-600">Jincheng Li</span>, Menglin Zheng, Danyang Dong and Xing Xie</p>
-                                <p class="text-gray-700 text-sm leading-relaxed">
-                                    Highlights: PC-CS-YOLO boosts obstacle detection for the visually impaired by fusing partial convolutions with cross-scale attention, outperforming YOLO11 in precision, recall, and mAP while cutting inference time to 20.6 ms.
-                                </p>
+                </section>
+
+                <!-- Publications Section -->
+                <section id="publications" class="hidden custom-scrollbar">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-6">Publications</h2>
+                    <!-- Corresponding Author Note -->
+                    <p class="text-sm text-gray-500 italic mb-6">*Corresponding Author</p>
+                    
+                    <div class="flex flex-col lg:flex-row lg:space-x-8">
+                        <!-- Conference Papers Column -->
+                        <div class="lg:w-1/2 w-full mb-8 lg:mb-0">
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Conference Papers</h3>
+                            <div class="timeline">
+                                <!-- Publication Item 1 (Conference) -->
+                                <div class="timeline-item">
+                                    <div class="timeline-year">
+                                        <div class="text-sm top-[2px]">MICCAI2025</div>
+                                        <div class="timeline-full-name">28th INTERNATIONAL CONFERENCE ON MEDICAL IMAGE COMPUTING AND COMPUTER ASSISTED INTERVENTION</div>
+                                    </div>
+                                    <div class="timeline-event">
+                                        <h4 class="text-base font-medium text-gray-800 mb-2">High-Precision Mixed Feature Fusion Network Using Hypergraph Computation for Cervical Abnormal Cell Detection</h4>
+                                        <p class="text-gray-600 my-1 font-light"><span class="font-medium text-blue-600">Jincheng Li</span>, Danyang Dong, Menglin Zheng, Jingbo Zhang, Yueqin Hang, Lichi Zhang, and Lili Zhao</p>
+                                        <div class="mt-2 flex flex-wrap gap-2">
+                                            <a href="#" target="_blank" rel="noopener noreferrer">
+                                                <img src="https://img.shields.io/badge/Paper-Coming%20soon-007ACC?style=flat" alt="Paper Coming soon badge">
+                                            </a>
+                                            <a href="https://github.com/ddddoreen/HyperMF2-Cell-Detection" target="_blank" rel="noopener noreferrer">
+                                                <img src="https://img.shields.io/badge/Artifact-GitHub-black?style=flat" alt="Artifact GitHub badge">
+                                            </a>
+                                            <a href="#" target="_blank" rel="noopener noreferrer">
+                                                <img src="https://img.shields.io/badge/arXiv-Coming%20soon-b31b1b?style=flat" alt="arXiv badge">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Journal Papers Column -->
+                        <div class="lg:w-1/2 w-full">
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Journal Papers</h3>
+                            <div class="timeline">
+                                <!-- Publication Item 1 (Journal) -->
+                                <div class="timeline-item">
+                                    <div class="timeline-year">
+                                        <div class="text-sm">Sensors</div>
+                                        <div class="timeline-full-name">Sensors 2025, 25(2), 534</div>
+                                    </div>
+                                    <div class="timeline-event">
+                                        <h4 class="text-base font-medium text-gray-800 mb-2">PC-CS-YOLO: High-Precision Obstacle Detection for Visually Impaired Safety</h4>
+                                        <p class="text-gray-600 my-1 font-light"><span class="font-medium text-blue-600">Jincheng Li</span>, Menglin Zheng, Danyang Dong and Xing Xie</p>
+                                        <div class="mt-2 flex flex-wrap gap-2">
+                                            <a href="https://www.mdpi.com/1424-8220/25/2/534" target="_blank" rel="noopener noreferrer">
+                                                <img src="https://img.shields.io/badge/Paper-Sensors-007ACC?style=flat" alt="Paper Sensors badge">
+                                            </a>
+                                            <a href="https://doi.org/10.3390/s25020534" target="_blank" rel="noopener noreferrer">
+                                                <img src="https://img.shields.io/badge/DOI-10.3390/s25020534-fb6b1b?style=flat" alt="DOI badge">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
+
+                <!-- Awards Section -->
+                <section id="awards" class="hidden custom-scrollbar">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">Awards</h2>
+                    <div class="timeline mt-8">
+                        <div class="timeline-item">
+                            <div class="timeline-year">
+                                <div class="flex flex-col items-center">
+                                    <span>2025</span>
+                                </div>
+                            </div>
+                            <div class="timeline-event">
+                                <h4 class="font-semibold text-gray-800 mb-1">China International College Students' Innovation Competition</h4>
+                                <p class="text-sm text-gray-500 mt-1"><strong>Rank:</strong> <span class="text-red-600">Provincial Second Prize</span></p>
+                                <p class="text-sm text-gray-500"><strong>Role:</strong> Project Leader</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">
+                                <div class="flex flex-col items-center">
+                                    <span>2025</span>
+                                    <img src="https://github.com/li00000011/li00000011/blob/main/picture/103450f4007156fb96653d2bc4f3d1f6.png?raw=true" alt="Award icon" class="mt-2 w-8">
+                                </div>
+                            </div>
+                            <div class="timeline-event">
+                                <h4 class="font-semibold text-gray-800 mb-1">Nantong University CS Stars of Innovation</h4>
+                                <p class="text-sm text-gray-500 mt-1"><strong>Rank:</strong> <span class="text-red-600"> Top 1%</span></p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">
+                                <div class="flex flex-col items-center">
+                                    <span>2025</span>
+                                    <img src="https://github.com/li00000011/li00000011/blob/main/picture/2adb09984ffee138e311827af7df8ddd.jpg?raw=true" alt="Award icon" class="mt-2 w-8">
+                                </div>
+                            </div>
+                            <div class="timeline-event">
+                                <h4 class="font-semibold text-gray-800 mb-1">RoboMaster Robotics Competition</h4>
+                                <p class="text-sm text-gray-500 mt-1"><strong>Rank:</strong> <span class="text-green-600">Provincial Second Prize</span></p>
+                                <p class="text-sm text-gray-500"><strong>Role:</strong> Project Leader</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">
+                                <div class="flex flex-col items-center">
+                                    <span>2025</span>
+                                    <img src="https://github.com/li00000011/li00000011/blob/main/picture/08e2a320893221095f9511359d8dc55d.jpg?raw=true" alt="Award icon" class="mt-2 w-8">
+                                </div>
+                            </div>
+                            <div class="timeline-event">
+                                <h4 class="font-semibold text-gray-800 mb-1">Champion of Men’s Singles Table Tennis, Nantong University</h4>
+                                <p class="text-sm text-gray-500 mt-1"><strong>Rank:</strong> <span class="text-blue-400">The forth</span></p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">
+                                <div class="flex flex-col items-center">
+                                    <span>2024</span>
+                                    <img src="https://github.com/li00000011/li00000011/blob/main/picture/afffb872e95626a71d2243eae6dd2278.jpg?raw=true" alt="Award icon" class="mt-2 w-8">
+                                </div>
+                            </div>
+                            <div class="timeline-event">
+                                <h4 class="font-semibold text-gray-800 mb-1">China Undergraduate Electronic Design Contest</h4>
+                                <p class="text-sm text-gray-500 mt-1"><strong>Rank:</strong> <span class="text-green-600">Provincial Second Prize</span></p>
+                                <p class="text-sm text-gray-500"><strong>Role:</strong> Project Leader</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">
+                                <div class="flex flex-col items-center">
+                                    <span>2024</span>
+                                    <img src="https://github.com/li00000011/li00000011/blob/main/picture/0dc029d56f701bc144500469340866ca.jpg?raw=true" alt="Award icon" class="mt-2 w-8">
+                                </div>
+                            </div>
+                            <div class="timeline-event">
+                                <h4 class="font-semibold text-gray-800 mb-1">China Collegiate Computing Competition</h4>
+                                <p class="text-sm text-gray-500 mt-1"><strong>Rank:</strong> <span class="text-red-600">National Second Prize</span></p>
+                                <p class="text-sm text-gray-500"><strong>Role:</strong> Core Team Member</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">
+                                <div class="flex flex-col items-center">
+                                    <span>2024</span>
+                                    <img src="https://github.com/li00000011/li00000011/blob/main/picture/de886551bbaf89e73d23f51d9a17dc55.jpg?raw=true" alt="Award icon" class="mt-2 w-8">
+                                </div>
+                            </div>
+                            <div class="timeline-event">
+                                <h4 class="font-semibold text-gray-800 mb-1">Champion of Men’s Singles Table Tennis, Nantong University</h4>
+                                <p class="text-sm text-gray-500 mt-1"><strong>Rank:</strong> <span class="text-blue-400">The forth</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contact Section -->
+                <section id="contact" class="hidden custom-scrollbar flex flex-col">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-6 flex-shrink-0">Contact</h2>
+                    
+                    <!-- Top Row: Cards & Map -->
+                    <div class="flex flex-col lg:flex-row lg:space-x-8 mb-6 flex-shrink-0">
+                        <!-- Left Column for Contact Cards -->
+                        <div class="lg:w-1/2 w-full flex flex-col gap-4 mb-8 lg:mb-0">
+                            <!-- Contact Card 1: Location -->
+                            <div class="flex-grow bg-gradient-to-br from-blue-50 to-indigo-100 p-4 rounded-2xl shadow-lg border border-blue-200 transition-all duration-300 hover:shadow-xl hover:scale-105 flex items-center gap-4">
+                                <i class="fas fa-map-marker-alt text-blue-500 text-2xl flex-shrink-0 w-8 text-center"></i>
+                                <span class="text-gray-800 font-semibold text-sm">Nantong, China</span>
+                            </div>
+                            <!-- Contact Card 2: WeChat -->
+                            <div class="flex-grow bg-gradient-to-br from-blue-50 to-indigo-100 p-4 rounded-2xl shadow-lg border border-blue-200 transition-all duration-300 hover:shadow-xl hover:scale-105 flex items-center gap-4">
+                                <i class="fab fa-weixin text-blue-500 text-2xl flex-shrink-0 w-8 text-center"></i>
+                                <span class="text-gray-800 font-semibold text-sm">_q_w_e_r_t_y_u_i</span>
+                            </div>
+                            <!-- Contact Card 3: Email -->
+                            <div class="flex-grow bg-gradient-to-br from-blue-50 to-indigo-100 p-4 rounded-2xl shadow-lg border border-blue-200 transition-all duration-300 hover:shadow-xl hover:scale-105 flex items-center gap-4">
+                                <i class="fas fa-envelope text-blue-500 text-2xl flex-shrink-0 w-8 text-center"></i>
+                                <span class="text-gray-800 font-semibold text-sm">2330110412@stmail.ntu.edu.cn</span>
+                            </div>
+                            <!-- Contact Card 4: Role/Title -->
+                            <div class="flex-grow bg-gradient-to-br from-blue-50 to-indigo-100 p-4 rounded-2xl shadow-lg border border-blue-200 transition-all duration-300 hover:shadow-xl hover:scale-105 flex items-center gap-4">
+                                <i class="fas fa-user-graduate text-blue-500 text-2xl flex-shrink-0 w-8 text-center"></i>
+                                <span class="text-gray-800 font-semibold text-sm">Undergraduate Student</span>
+                            </div>
+                        </div>
+                        <!-- Right Column for Embedded Map -->
+                        <div class="lg:w-1/2 w-full">
+                            <div class="map-container h-full">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d37362.319679312386!2d120.87743696500188!3d31.994595336003385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35b18264a5b96b07%3A0x20535b4e7dc8016f!2z5Y2X6YCa5aSn5a2m!5e1!3m2!1szh-CN!2s!4v1752710926891!5m2!1szh-CN!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Row: Gallery -->
+                    <div class="flex-grow flex flex-col min-h-0">
+                        <div id="gallery-container" class="flex-grow overflow-hidden flex items-center">
+                            <div id="gallery-scroll-container" class="flex space-x-4">
+                                <!-- Gallery Image 1 -->
+                                <div class="gallery-item flex-shrink-0 w-80 h-52 rounded-lg overflow-hidden shadow-md transform hover:scale-[1.02] transition-transform duration-300 cursor-pointer">
+                                    <img src="https://github.com/li00000011/li00000011/blob/main/picture/59F7A674AEB9FAD7D17572EBA41AB42C.jpg?raw=true" alt="Gallery Image 1" class="w-full h-full object-cover">
+                                </div>
+                                <!-- Gallery Image 2 -->
+                                <div class="gallery-item flex-shrink-0 w-80 h-52 rounded-lg overflow-hidden shadow-md transform hover:scale-[1.02] transition-transform duration-300 cursor-pointer">
+                                    <img src="https://github.com/li00000011/li00000011/blob/main/picture/70187594A32361A3689B4A020143F46D.png?raw=true" alt="Gallery Image 2" class="w-full h-full object-cover">
+                                </div>
+                                <!-- Gallery Image 3 -->
+                                <div class="gallery-item flex-shrink-0 w-80 h-52 rounded-lg overflow-hidden shadow-md transform hover:scale-[1.02] transition-transform duration-300 cursor-pointer">
+                                    <img src="https://github.com/li00000011/li00000011/blob/main/picture/75E0950A6646A5098D7D2AC17BD46298.jpg?raw=true" alt="Gallery Image 3" class="w-full h-full object-cover">
+                                </div>
+                                <!-- Add more images here if needed -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
-        </section>
-
-        <!-- 专利 (Patents) -->
-        <section id="patents" class="py-16 md:py-24 bg-white">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">Patents</h2>
-                <div class="space-y-12">
-                    <!-- CN Patents -->
-                    <div>
-                        <!-- Changed to grid for 3 cards per row -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <!-- Patent Card 1 -->
-                            <div class="bg-gray-50 p-6 rounded-xl shadow-md border border-gray-200 transform hover:scale-[1.01] transition-transform duration-300">
-                                <h4 class="text-xl font-semibold text-blue-700 mb-2">一种基于改进的YOLOv8的安全帽规范佩戴检测法</h4>
-                                <p class="text-md text-gray-600 mb-1">Patent No. CN119580177A</p>
-                                <p class="text-md text-gray-700">Inventors: <span class="font-bold text-blue-600">Jincheng Li</span>, Sailin Wu, Zhangyan Yao, Haoyu Wei, Yuehua Li, Bin Hu</p>
-                            </div>
-                            <!-- Patent Card 2 -->
-                            <div class="bg-gray-50 p-6 rounded-xl shadow-md border border-gray-200 transform hover:scale-[1.01] transition-transform duration-300">
-                                <h4 class="text-xl font-semibold text-blue-700 mb-2">基于改进YOLO11的视障群体引导马甲系统的障碍物检测方法</h4>
-                                <p class="text-md text-gray-600 mb-1">Patent No. CN119600523A</p>
-                                <p class="text-md text-gray-700">Inventors: <span class="font-bold text-blue-600">Jincheng Li</span>, Danyang Dong, Zhengpeng Li, Wei Yu</p>
-                            </div>
-                            <!-- Patent Card 3 -->
-                            <div class="bg-gray-50 p-6 rounded-xl shadow-md border border-gray-200 transform hover:scale-[1.01] transition-transform duration-300">
-                                <h4 class="text-xl font-semibold text-blue-700 mb-2">一种基于卷积神经网络手语翻译手套的翻译方法</h4>
-                                <p class="text-md text-gray-600 mb-1">Patent No. CN119645227A</p>
-                                <p class="text-md text-gray-700">Inventors: <span class="font-bold text-blue-600">Jincheng Li</span>, Shuai Chen, Danyang Dong, Xing Xie</p>
-                            </div>
-                            <!-- Patent Card 4 -->
-                            <div class="bg-gray-50 p-6 rounded-xl shadow-md border border-gray-200 transform hover:scale-[1.01] transition-transform duration-300">
-                                <h4 class="text-xl font-semibold text-blue-700 mb-2">一种基于深度学习的布匹疵点检测方法</h4>
-                                <p class="text-md text-gray-600 mb-1">Patent No. CN202510187812.X</p>
-                                <p class="text-md text-gray-700">Inventors: <span class="font-bold text-blue-600">Jincheng Li</span>, Shuai Chen, Danyang Dong, Yihan Zhang, Yuhao Qian, Xing Xie</p>
-                            </div>
-                            <!-- Patent Card 5 -->
-                            <div class="bg-gray-50 p-6 rounded-xl shadow-md border border-gray-200 transform hover:scale-[1.01] transition-transform duration-300">
-                                <h4 class="text-xl font-semibold text-blue-700 mb-2">一种基于HGNN的安全帽佩戴规范性分析方法</h4>
-                                <p class="text-md text-gray-600 mb-1">Patent No. 202510341010X</p>
-                                <p class="text-md text-gray-700">Inventors: <span class="font-bold text-blue-600">Jincheng Li</span>, Danyang Dong, Haoyu Wei, Sailin Wu, Zhangyan Yao, Yuehua Li, Bin Hu</p>
-                            </div>                           
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 竞赛 (Competitions) -->
-        <section id="competitions" class="py-16 md:py-24 bg-gray-100">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">Competitions</h2>
-                <!-- Changed to 2 columns on medium screens and up -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Competition Card 1 -->
-                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 transform hover:scale-[1.01] transition-transform duration-300">
-                        <h4 class="text-xl font-semibold text-blue-700 mb-2">China International College Students' Innovation Competition</h4>
-                        <p class="text-lg text-gray-800 font-medium mb-1">Rank: <span class="text-red-600">Provincial Glod Medal</span></p>
-                        <p class="text-lg text-gray-800 font-medium mb-1">Role: Project Leader</p>                        
-                        <p class="text-md text-gray-600">Award Time: 2025</p>
-                    </div>
-                    <!-- Competition Card 2 -->
-                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 transform hover:scale-[1.01] transition-transform duration-300">
-                        <h4 class="text-xl font-semibold text-blue-700 mb-2">RoboMaster Robotics Competition</h4>
-                        <p class="text-lg text-gray-800 font-medium mb-1">Rank: <span class="text-green-600">Provincial Second Prize</span></p>
-                        <p class="text-lg text-gray-800 font-medium mb-1">Role: Project Leader</p> 
-                        <p class="text-md text-gray-600">Award Time: 2025</p>
-                    </div>
-                    <!-- Competition Card 3 -->
-                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 transform hover:scale-[1.01] transition-transform duration-300">
-                        <h4 class="text-xl font-semibold text-blue-700 mb-2">China Undergraduate Electronic Design Contest</h4>
-                        <p class="text-lg text-gray-800 font-medium mb-1">Rank: <span class="text-green-600">Provincial Second Prize</span></p>
-                        <p class="text-lg text-gray-800 font-medium mb-1">Role: Project Leader</p> 
-                        <p class="text-md text-gray-600">Award Time: 2024</p>
-                    </div>
-                    <!-- Competition Card 3 -->
-                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 transform hover:scale-[1.01] transition-transform duration-300">
-                        <h4 class="text-xl font-semibold text-blue-700 mb-2">China Collegiate Computing Competition</h4>
-                        <p class="text-lg text-gray-800 font-medium mb-1">Rank: <span class="text-green-600">National Second Prize</span></p>
-                        <p class="text-lg text-gray-800 font-medium mb-1">Role: Core Team Member</p> 
-                        <p class="text-md text-gray-600">Award Time: 2024</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 画廊 (Gallery) -->
-        <section id="gallery" class="py-16 md:py-24 bg-white">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">Gallery</h2>
-                <!-- 修改：移除 custom-scrollbar，并为父容器添加 id -->
-                <div id="gallery-container" class="overflow-hidden rounded-lg shadow-inner bg-gray-50 p-4">
-                    <!-- 修改：为内容包裹一层 div -->
-                    <div id="gallery-scroll-container" class="flex space-x-4 md:space-x-6 lg:space-x-8">
-                        <!-- Gallery Image 1 -->
-                        <div class="gallery-item flex-shrink-0 w-64 md:w-80 lg:w-96 rounded-lg overflow-hidden shadow-md transform hover:scale-[1.02] transition-transform duration-300 cursor-pointer">
-                            <img src="https://pub-d7cec217f798427cbe9e5351658a240c.r2.dev/2025/07/70187594a32361a3689b4a020143f46d.png" alt="Gallery Image 1" class="w-full h-full object-cover">
-                        </div>
-                        <!-- Gallery Image 2 -->
-                        <div class="gallery-item flex-shrink-0 w-64 md:w-80 lg:w-96 rounded-lg overflow-hidden shadow-md transform hover:scale-[1.02] transition-transform duration-300 cursor-pointer">
-                            <img src="https://pub-d7cec217f798427cbe9e5351658a240c.r2.dev/2025/07/59f7a674aeb9fad7d17572eba41ab42c.jpg" alt="Gallery Image 2" class="w-full h-full object-cover">
-                        </div>
-                        <!-- Gallery Image 3 -->
-                        <div class="gallery-item flex-shrink-0 w-64 md:w-80 lg:w-96 rounded-lg overflow-hidden shadow-md transform hover:scale-[1.02] transition-transform duration-300 cursor-pointer">
-                            <img src="https://pub-d7cec217f798427cbe9e5351658a240c.r2.dev/2025/07/75e0950a6646a5098d7d2ac17bd46298.jpg" alt="Gallery Image 3" class="w-full h-full object-cover">
-                        </div>
-                        <!-- Add more images as needed -->
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="bg-gray-800 text-white py-8 text-center">
-        <div class="container mx-auto px-6">
-            <p>&copy; <span id="currentYear"></span> Jincheng Li. All Rights Reserved.</p>
-            <p class="text-sm mt-2">Built with HTML · Tailwind CSS · JavaScript</p>
         </div>
-    </footer>
 
-    <!-- 图片放大模态框 -->
-    <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden transition-opacity duration-300">
+        <!-- Right sidebar navigation -->
+        <nav class="sidebar-nav">
+            <ul class="relative flex flex-col space-y-4">
+                <li><a href="#homepage" class="nav-icon p-3 rounded-full block text-gray-400 hover:text-blue-500 transition-colors duration-200" data-section="homepage">
+                    <!-- Homepage SVG Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    <span class="nav-tooltip">Homepage</span>
+                </a></li>
+                <li><a href="#about" class="nav-icon p-3 rounded-full block text-gray-400 hover:text-blue-500 transition-colors duration-200" data-section="about">
+                    <!-- About Me (User) SVG Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span class="nav-tooltip">About Me</span>
+                </a></li>
+                <li><a href="#publications" class="nav-icon p-3 rounded-full block text-gray-400 hover:text-blue-500 transition-colors duration-200" data-section="publications">
+                    <!-- Publications (Book) SVG Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    </svg>
+                    <span class="nav-tooltip">Publications</span>
+                </a></li>
+                <li><a href="#awards" class="nav-icon p-3 rounded-full block text-gray-400 hover:text-blue-500 transition-colors duration-200" data-section="awards">
+                    <!-- Awards (Medal) SVG Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="8" r="7"></circle>
+                        <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                    </svg>
+                    <span class="nav-tooltip">Awards</span>
+                </a></li>
+                <li><a href="#contact" class="nav-icon p-3 rounded-full block text-gray-400 hover:text-blue-500 transition-colors duration-200" data-section="contact">
+                    <!-- Contact (Mail) SVG Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    <span class="nav-tooltip">Contact</span>
+                </a></li>
+            </ul>
+            <div id="nav-indicator" class="nav-indicator"></div>
+        </nav>
+
+        <!-- Pagination buttons (bottom right) -->
+        <div id="pagination-controls">
+            <button id="prev-btn" class="p-3 bg-white rounded-full shadow-md text-gray-700 hover:bg-gray-100 text-xl transition-colors duration-200"><i class="fas fa-chevron-left"></i></button>
+            <button id="next-btn" class="p-3 bg-white rounded-full shadow-md text-gray-700 hover:bg-gray-100 text-xl transition-colors duration-200"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden flex items-center justify-center p-4 transition-opacity duration-300">
         <span id="modal-close" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300">&times;</span>
-        <img id="modal-image" src="" alt="Enlarged Image" class="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-lg">
+        <img id="modal-image" src="" alt="Enlarged view" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl">
+    </div>
+
+    <!-- Mobile hamburger menu (top right) -->
+    <button id="hamburger-menu" class="fixed top-4 right-4 z-50 p-3 bg-white rounded-full shadow-md lg:hidden">
+        <span class="block w-6 h-0.5 bg-gray-700 mb-1"></span>
+        <span class="block w-6 h-0.5 bg-gray-700 mb-1"></span>
+        <span class="block w-6 h-0.5 bg-gray-700"></span>
+    </button>
+
+    <!-- Mobile menu overlay -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-white bg-opacity-95 z-40 hidden lg:hidden flex flex-col items-center justify-center space-y-6">
+        <a href="#homepage" class="text-3xl font-bold text-gray-800 hover:text-blue-600 transition-colors duration-200" data-section="homepage">Homepage</a>
+        <a href="#about" class="text-3xl font-bold text-gray-800 hover:text-blue-600 transition-colors duration-200" data-section="about">About Me</a>
+        <a href="#publications" class="text-3xl font-bold text-gray-800 hover:text-blue-600 transition-colors duration-200" data-section="publications">Publications</a>
+        <a href="#awards" class="text-3xl font-bold text-gray-800 hover:text-blue-600 transition-colors duration-200" data-section="awards">Awards</a>
+        <a href="#contact" class="text-3xl font-bold text-gray-800 hover:text-blue-600 transition-colors duration-200" data-section="contact">Contact</a>
     </div>
 
     <script>
-        // 获取当前年份并插入 span 中
-        document.getElementById("currentYear").textContent = new Date().getFullYear();
-    </script>
-
-    <script>
-        // 画廊无缝滚动脚本
         document.addEventListener('DOMContentLoaded', () => {
-            const scrollContainer = document.getElementById('gallery-scroll-container');
-            if (scrollContainer) {
-                // 克隆所有子元素并追加
-                const children = Array.from(scrollContainer.children);
-                children.forEach(child => {
-                    scrollContainer.appendChild(child.cloneNode(true));
-                });
+            const navLinks = document.querySelectorAll('.sidebar-nav a, #mobile-menu-overlay a');
+            const navIndicator = document.getElementById('nav-indicator');
+            const sections = document.querySelectorAll('.right-panel section');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            
+            let currentSectionIndex = 0;
+            const sectionIds = Array.from(sections).map(sec => sec.id);
 
-                // 添加动画类
-                scrollContainer.classList.add('scrolling-wrapper');
+            function updateIndicatorPosition(activeLinkElement) {
+                if (!activeLinkElement || !navIndicator) return;
+                const parent = activeLinkElement.closest('.sidebar-nav');
+                if (!parent) return;
+
+                const parentRect = parent.getBoundingClientRect();
+                const linkRect = activeLinkElement.getBoundingClientRect();
+
+                const top = linkRect.top - parentRect.top;
+                const left = linkRect.left - parentRect.left;
+
+                navIndicator.style.top = `${top}px`;
+                navIndicator.style.left = `${left}px`;
+                navIndicator.style.width = `${linkRect.width}px`;
+                navIndicator.style.height = `${linkRect.height}px`;
             }
-        });
-    </script>
 
-    <script>
-        // 图片放大功能脚本
-        document.addEventListener('DOMContentLoaded', () => {
-            const modal = document.getElementById('image-modal');
-            const modalImage = document.getElementById('modal-image');
-            const closeBtn = document.getElementById('modal-close');
-            const galleryItems = document.querySelectorAll('.gallery-item');
+            function showSection(index, direction = 'next') {
+                const currentActiveSection = document.querySelector('.right-panel section.active-section');
+                const newActiveSection = sections[index];
 
-            galleryItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    const imgSrc = item.querySelector('img').src;
-                    modalImage.src = imgSrc;
-                    modal.classList.remove('hidden');
-                    document.body.classList.add('modal-active');
+                if (currentActiveSection && currentActiveSection !== newActiveSection) {
+                    let newSectionInitialTransform = direction === 'next' ? 'translateX(100%)' : 'translateX(-100%)';
+                    let currentSectionExitTransform = direction === 'next' ? 'translateX(-100%)' : 'translateX(100%)';
+
+                    newActiveSection.style.transform = newSectionInitialTransform;
+                    newActiveSection.style.opacity = '0';
+                    newActiveSection.classList.remove('hidden');
+
+                    currentActiveSection.style.zIndex = '1';
+                    newActiveSection.style.zIndex = '2';
+
+                    void currentActiveSection.offsetWidth; // Trigger reflow to ensure transition
+
+                    currentActiveSection.style.opacity = '0';
+                    currentActiveSection.style.transform = currentSectionExitTransform;
+                    
+                    currentActiveSection.addEventListener('transitionend', function handler() {
+                        currentActiveSection.classList.add('hidden');
+                        currentActiveSection.classList.remove('active-section');
+                        currentActiveSection.style.transform = 'translateX(0)'; // Reset transform for next use
+                        this.removeEventListener('transitionend', handler);
+                    });
+
+                    void newActiveSection.offsetWidth; // Trigger reflow to ensure transition
+
+                    newActiveSection.style.opacity = '1';
+                    newActiveSection.style.transform = 'translateX(0)';
+                    newActiveSection.classList.add('active-section');
+                    newActiveSection.scrollTop = 0; // Scroll to top of new section
+
+                } else if (!currentActiveSection) {
+                    // Initial load or no active section
+                    newActiveSection.classList.remove('hidden');
+                    newActiveSection.classList.add('active-section');
+                    newActiveSection.style.opacity = '1';
+                    newActiveSection.scrollTop = 0;
+                }
+
+                let activeSidebarLink = null;
+                navLinks.forEach(link => {
+                    const iconLink = link.closest('.sidebar-nav a') || link; // Get the actual <a> element for sidebar or mobile
+                    if (iconLink.dataset.section === sectionIds[index]) {
+                        iconLink.classList.add('active');
+                        if (iconLink.closest('.sidebar-nav')) { // Check if it's a sidebar link
+                           activeSidebarLink = iconLink;
+                        }
+                    } else {
+                        iconLink.classList.remove('active');
+                    }
+                });
+                
+                // Update indicator only if a sidebar link is active
+                if (activeSidebarLink) {
+                    updateIndicatorPosition(activeSidebarLink);
+                }
+                currentSectionIndex = index;
+            }
+
+            // Show the first section on initial load
+            setTimeout(() => {
+                showSection(0, 'none'); // 'none' for no animation on initial load
+            }, 50); // Small delay to ensure CSS is loaded
+
+            // Add event listeners for navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault(); // Prevent default anchor link behavior
+                    const targetId = link.dataset.section || link.getAttribute('href').substring(1);
+                    const index = sectionIds.indexOf(targetId);
+                    if (index !== -1) {
+                        const direction = index > currentSectionIndex ? 'next' : 'prev';
+                        showSection(index, direction);
+                    }
+                    // Close mobile menu after clicking a link
+                    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+                    if (!mobileMenuOverlay.classList.contains('hidden')) {
+                        mobileMenuOverlay.classList.add('hidden');
+                        document.getElementById('hamburger-menu').classList.remove('open');
+                    }
                 });
             });
 
-            const closeModal = () => {
-                modal.classList.add('hidden');
-                document.body.classList.remove('modal-active');
-            };
+            // Add event listeners for pagination buttons
+            prevBtn.addEventListener('click', () => {
+                let newIndex = currentSectionIndex - 1;
+                if (newIndex < 0) newIndex = sectionIds.length - 1; // Loop back to last section
+                showSection(newIndex, 'prev');
+            });
 
-            closeBtn.addEventListener('click', closeModal);
+            nextBtn.addEventListener('click', () => {
+                let newIndex = currentSectionIndex + 1;
+                if (newIndex >= sectionIds.length) newIndex = 0; // Loop back to first section
+                showSection(newIndex, 'next');
+            });
+            
+            // Hamburger menu toggle for mobile
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            hamburgerMenu.addEventListener('click', () => {
+                mobileMenuOverlay.classList.toggle('hidden');
+                hamburgerMenu.classList.toggle('open');
+            });
+
+            // Update indicator position on window resize
+            window.addEventListener('resize', () => {
+                const activeLink = document.querySelector('.sidebar-nav .nav-icon.active');
+                if(activeLink) {
+                    updateIndicatorPosition(activeLink);
+                }
+            });
+
+            // --- START: Gallery Scroll Logic ---
+            const scrollContainer = document.getElementById('gallery-scroll-container');
+            if (scrollContainer) {
+                const children = Array.from(scrollContainer.children);
+                children.forEach(child => {
+                    const clone = child.cloneNode(true);
+                    // We no longer add a separate click listener here.
+                    // The main Image Modal Logic will handle it.
+                    scrollContainer.appendChild(clone);
+                });
+                scrollContainer.classList.add('scrolling-wrapper');
+            }
+            // --- END: Gallery Scroll Logic ---
+
+            // --- START: Image Modal Logic ---
+            const modal = document.getElementById('image-modal');
+            const modalImage = document.getElementById('modal-image');
+            const modalClose = document.getElementById('modal-close');
+
+            // Select all images that should be zoomable (from Awards AND Gallery)
+            // This now includes original and cloned gallery images.
+            const zoomableImages = document.querySelectorAll('#awards .timeline-year img, #gallery-scroll-container .gallery-item img');
+
+            zoomableImages.forEach(img => {
+                img.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent any other clicks from firing
+                    modalImage.src = img.src;
+                    modal.classList.remove('hidden');
+                });
+            });
+
+            // Function to close the modal
+            function closeModal() {
+                modal.classList.add('hidden');
+                modalImage.src = ''; // Clear src to prevent showing old image briefly
+            }
+
+            // Close modal events
+            modalClose.addEventListener('click', closeModal);
             modal.addEventListener('click', (e) => {
-                // 如果点击的是背景（而不是图片本身），则关闭模态框
+                // Close only if the background overlay itself is clicked
                 if (e.target === modal) {
                     closeModal();
                 }
             });
-        });
-    </script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // 获取所有导航链接
-            const navLinks = document.querySelectorAll('.nav-link');
-
-            // 为每个链接添加点击事件监听器，实现平滑滚动
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault(); // 阻止默认的锚点跳转行为
-                    const targetId = this.getAttribute('href').substring(1); // 获取目标ID (去掉 #)
-                    const targetSection = document.getElementById(targetId);
-
-                    if (targetSection) {
-                        // 使用 scrollIntoView 实现平滑滚动
-                        targetSection.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start' // 滚动到元素的顶部
-                        });
-                    }
-                });
+            // Close modal with the Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                    closeModal();
+                }
             });
-
-            // 可选：根据滚动位置高亮导航栏链接
-            const sections = document.querySelectorAll('section[id]');
-            const header = document.querySelector('header');
-            const headerHeight = header.offsetHeight; // 获取导航栏高度
-
-            function highlightNavLink() {
-                let currentActive = '';
-                sections.forEach(section => {
-                    // 获取每个 section 的顶部位置，减去导航栏高度，以便在 section 顶部进入视口时激活
-                    const sectionTop = section.offsetTop - headerHeight - 1; // 额外减去1px避免抖动
-                    const sectionHeight = section.clientHeight;
-
-                    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                        currentActive = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href').substring(1) === currentActive) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-
-            // 监听滚动事件
-            window.addEventListener('scroll', highlightNavLink);
-            // 页面加载时执行一次，确保初始状态正确
-            highlightNavLink();
+            // --- END: Image Modal Logic ---
         });
     </script>
 </body>
