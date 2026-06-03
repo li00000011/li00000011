@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jincheng Li | Academic Homepage</title>
+  <meta name="description" content="Academic homepage of Jincheng Li, undergraduate researcher at Nantong University working on MLLM, computational pathology, and medical image computing.">
+  <link rel="icon" href="assets/256x256.ico" type="image/x-icon">
+  <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f6f3;
+      --surface: rgba(255, 255, 255, 0.82);
+      --surface-solid: #ffffff;
+      --surface-soft: #fbfbf8;
+      --ink: #111111;
+      --ink-soft: #2d2f2f;
+      --muted: #6a6f6c;
+      --faint: #8b908d;
+      --line: #e3e1dc;
+      --line-strong: #d1cec7;
+      --green: #0f6a4f;
+      --green-soft: #e9f3ee;
+      --blue: #315f93;
+      --warm: #9d7444;
+      --shadow: 0 24px 70px rgba(18, 22, 20, 0.08);
+      --radius: 8px;
+      --font: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(246, 246, 243, 0.82) 42%, #efeee9 100%),
+        radial-gradient(circle at 24% 10%, rgba(255, 255, 255, 0.92), transparent 34%);
+      font-family: var(--font);
+      line-height: 1.5;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .skip-link {
+      position: fixed;
+      left: 18px;
+      top: 18px;
+      z-index: 100;
+      transform: translateY(-180%);
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 13px;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: minmax(300px, 360px) minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 28px;
+      padding: 28px;
+      border-right: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.76);
+      backdrop-filter: blur(24px);
+    }
+
+    .profile-card {
+      display: grid;
+      gap: 20px;
+    }
+
+    .portrait {
+      width: 112px;
+      height: 112px;
+      overflow: hidden;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: 0 10px 30px rgba(17, 17, 17, 0.08);
+    }
+
+    .portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.95) contrast(1.02);
+    }
+
+    .name-block {
+      display: grid;
+      gap: 9px;
+    }
+
+    .name-block h1 {
+      margin: 0;
+      font-size: 31px;
+      line-height: 1.04;
+      font-weight: 650;
+      letter-spacing: 0;
+    }
+
+    .name-block .cn {
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .role {
+      margin: 0;
+      max-width: 270px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .status-pill {
+      width: fit-content;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 10px;
+      background: var(--surface-soft);
+      color: var(--ink-soft);
+      font-size: 12px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 4px rgba(15, 106, 79, 0.12);
+    }
+
+    .upcoming-card {
+      position: relative;
+      padding: 16px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(15, 106, 79, 0.08) 0%, rgba(15, 106, 79, 0.02) 100%);
+      border: 1px solid rgba(15, 106, 79, 0.15);
+    }
+
+    .upcoming-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+      margin-top: -4px;
+    }
+
+    .upcoming-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 4px rgba(15, 106, 79, 0.15);
+      animation: pulse-green 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulse-green {
+      0%, 100% { box-shadow: 0 0 0 4px rgba(15, 106, 79, 0.15); }
+      50% { box-shadow: 0 0 0 8px rgba(15, 106, 79, 0.06); }
+    }
+
+    .upcoming-label {
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .upcoming-text {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .logos {
+      display: grid;
+      gap: 10px;
+      padding: 16px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .logos img {
+      max-height: 30px;
+      width: auto;
+      opacity: 0.82;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface-solid);
+    }
+
+    .info-list li {
+      display: grid;
+      gap: 5px;
+      padding: 12px;
+      border-bottom: 1px solid var(--line);
+      min-width: 0;
+    }
+
+    .info-list li:last-child {
+      border-bottom: 0;
+    }
+
+    .label {
+      color: var(--faint);
+      font-size: 11px;
+      font-weight: 650;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .value {
+      color: var(--ink-soft);
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    .sidebar-actions {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .sidebar-actions a,
+    .small-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      min-height: 34px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--ink-soft);
+      font-size: 12px;
+      font-weight: 560;
+      transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+    }
+
+    .sidebar-actions a:hover,
+    .small-button:hover {
+      border-color: #c8c5be;
+      background: #fff;
+      transform: translateY(-1px);
+    }
+
+    .sidebar-footer {
+      margin: 0;
+      color: var(--faint);
+      font-size: 11px;
+    }
+
+    .main {
+      min-width: 0;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 14px clamp(22px, 5vw, 64px);
+      border-bottom: 1px solid rgba(227, 225, 220, 0.82);
+      background: rgba(246, 246, 243, 0.72);
+      backdrop-filter: blur(24px);
+    }
+
+    .topbar-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      color: var(--ink-soft);
+      font-size: 13px;
+      font-weight: 650;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 22px;
+      height: 22px;
+      border: 1px solid var(--line-strong);
+      border-radius: 50%;
+      background: linear-gradient(135deg, #fff, #e9e8e3);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .nav a {
+      border-radius: 999px;
+      padding: 7px 11px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 560;
+      transition: background 220ms ease, color 220ms ease, box-shadow 220ms ease;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      background: rgba(255, 255, 255, 0.86);
+      color: var(--ink);
+      box-shadow: inset 0 0 0 1px rgba(209, 206, 199, 0.72);
+    }
+
+    .content {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: clamp(32px, 6vw, 78px) clamp(22px, 5vw, 64px) 72px;
+    }
+
+    .hero {
+      min-height: calc(100vh - 58px);
+      display: grid;
+      align-content: start;
+      gap: 30px;
+      padding-top: clamp(20px, 6vw, 60px);
+      padding-bottom: 2px;
+    }
+
+    .kicker {
+      margin: 0;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .hero-copy {
+      display: grid;
+      gap: 20px;
+      max-width: 920px;
+    }
+
+    .hero h2 {
+      margin: 0;
+      max-width: 910px;
+      font-size: clamp(48px, 7vw, 96px);
+      line-height: 0.94;
+      font-weight: 620;
+      letter-spacing: 0;
+    }
+
+    .hero h2 span {
+      color: var(--muted);
+      font-weight: 520;
+    }
+
+    .hero-text {
+      margin: 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: clamp(17px, 1.5vw, 20px);
+      line-height: 1.55;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      border-radius: var(--radius);
+      padding: 0 14px;
+      font-size: 13px;
+      font-weight: 620;
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+    }
+
+    .button.primary {
+      border: 1px solid #111;
+      background: #111;
+      color: #fff;
+    }
+
+    .button.secondary {
+      border: 1px solid var(--line-strong);
+      background: rgba(255, 255, 255, 0.76);
+      color: var(--ink);
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .snapshot {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 40px;
+    }
+
+    .snapshot-item {
+      min-height: 126px;
+      display: grid;
+      align-content: space-between;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+      transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+    }
+
+    .snapshot-item:hover {
+      border-color: var(--line-strong);
+      box-shadow: 0 4px 16px rgba(17, 17, 17, 0.06);
+      transform: translateY(-2px);
+    }
+
+    .snapshot-item strong {
+      display: block;
+      color: var(--ink);
+      font-size: 26px;
+      line-height: 1;
+      font-weight: 620;
+    }
+
+    .snapshot-item span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    section {
+      scroll-margin-top: 82px;
+      padding: clamp(58px, 7vw, 94px) 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr);
+      gap: 24px;
+      margin-bottom: 26px;
+    }
+
+    .section-index {
+      color: var(--faint);
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .section-head h3 {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(26px, 3.4vw, 46px);
+      line-height: 1.08;
+      font-weight: 620;
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      margin: 14px 0 0;
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1.04fr) minmax(300px, 0.96fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset;
+    }
+
+    .panel.pad {
+      padding: clamp(18px, 3vw, 28px);
+    }
+
+    .prose {
+      color: var(--ink-soft);
+      font-size: 15px;
+    }
+
+    .prose p {
+      margin: 0 0 16px;
+    }
+
+    .prose a,
+    .inline-link {
+      color: var(--green);
+      border-bottom: 1px solid rgba(15, 106, 79, 0.3);
+    }
+
+    .detail-stack {
+      display: grid;
+      gap: 0;
+      overflow: hidden;
+    }
+
+    .detail-row {
+      display: grid;
+      grid-template-columns: 106px minmax(0, 1fr);
+      gap: 18px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .detail-row:last-child {
+      border-bottom: 0;
+    }
+
+    .detail-row strong {
+      color: var(--faint);
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    .detail-row span {
+      color: var(--ink-soft);
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    .service-list {
+      display: grid;
+      gap: 1px;
+      overflow: hidden;
+      background: var(--line);
+    }
+
+    .service-row {
+      display: grid;
+      grid-template-columns: 76px minmax(0, 1fr);
+      gap: 14px;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.82);
+    }
+
+    .service-row strong {
+      color: var(--green);
+      font-size: 13px;
+    }
+
+    .service-row ul {
+      display: grid;
+      gap: 7px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: var(--ink-soft);
+      font-size: 13px;
+    }
+
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .research-card {
+      min-height: 184px;
+      display: grid;
+      align-content: space-between;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.72);
+      transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+    }
+
+    .research-card:hover {
+      border-color: var(--line-strong);
+      box-shadow: 0 4px 16px rgba(17, 17, 17, 0.06);
+      transform: translateY(-2px);
+    }
+
+    .research-card span {
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    .research-card h4 {
+      margin: 34px 0 9px;
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.18;
+      font-weight: 620;
+    }
+
+    .research-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .paper-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .paper {
+      display: grid;
+      grid-template-columns: 78px minmax(0, 1fr);
+      gap: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: clamp(18px, 3vw, 24px);
+      background: rgba(255, 255, 255, 0.74);
+      transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+    }
+
+    .paper:hover {
+      border-color: var(--line-strong);
+      box-shadow: 0 4px 16px rgba(17, 17, 17, 0.06);
+      transform: translateY(-2px);
+    }
+
+    .paper-no {
+      color: var(--faint);
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .venue {
+      display: inline-flex;
+      width: fit-content;
+      border: 1px solid rgba(15, 106, 79, 0.18);
+      border-radius: 999px;
+      padding: 4px 8px;
+      background: var(--green-soft);
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 680;
+    }
+
+    .paper h4 {
+      margin: 13px 0 8px;
+      max-width: 820px;
+      color: var(--ink);
+      font-size: clamp(17px, 1.8vw, 24px);
+      line-height: 1.18;
+      font-weight: 620;
+      letter-spacing: 0;
+    }
+
+    .authors {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .authors b {
+      color: var(--ink);
+    }
+
+    .paper-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .paper-links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 0 10px;
+      background: rgba(255, 255, 255, 0.74);
+      color: var(--ink-soft);
+      font-size: 12px;
+      font-weight: 560;
+      transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
+    }
+
+    .paper-links a:hover {
+      border-color: #111;
+      background: #111;
+      color: #fff;
+    }
+
+    .award-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .award {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 150px;
+      gap: 18px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.74);
+      transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+    }
+
+    .award:hover {
+      border-color: var(--line-strong);
+      box-shadow: 0 4px 16px rgba(17, 17, 17, 0.06);
+      transform: translateY(-2px);
+    }
+
+    .award h4 {
+      margin: 0 0 6px;
+      font-size: 18px;
+      line-height: 1.2;
+      font-weight: 620;
+    }
+
+    .award p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .award-rank {
+      justify-self: end;
+      border-radius: 999px;
+      padding: 7px 10px;
+      background: #f1efe8;
+      color: var(--warm);
+      font-size: 13px;
+      font-weight: 650;
+      text-align: center;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .contact-item {
+      min-height: 144px;
+      display: grid;
+      align-content: space-between;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.74);
+      min-width: 0;
+      transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+    }
+
+    .contact-item:hover {
+      border-color: var(--line-strong);
+      box-shadow: 0 4px 16px rgba(17, 17, 17, 0.06);
+      transform: translateY(-2px);
+    }
+
+    .contact-item span {
+      color: var(--faint);
+      font-size: 11px;
+      font-weight: 650;
+      text-transform: uppercase;
+    }
+
+    .contact-item strong {
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.25;
+      font-weight: 620;
+      overflow-wrap: anywhere;
+    }
+
+    .site-footer {
+      padding-top: 32px;
+      color: var(--faint);
+      font-size: 12px;
+    }
+
+    .gallery-carousel {
+      position: relative;
+      width: 100%;
+      height: 380px;
+      overflow: hidden;
+    }
+
+    .gallery-track {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .gallery-card {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 60%;
+      max-width: 700px;
+      height: 100%;
+      cursor: pointer;
+      transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.7s ease, filter 0.7s ease;
+      will-change: transform, opacity, filter;
+    }
+
+    .gallery-img-wrap {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .gallery-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 50%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-card[data-active="true"] .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-overlay h4 {
+      margin: 0 0 4px;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 650;
+    }
+
+    .gallery-overlay span {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 13px;
+    }
+
+    .gallery-prev,
+    .gallery-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 30;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(8px);
+      color: var(--ink-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 200ms ease, border-color 200ms ease;
+    }
+
+    .gallery-prev { left: 16px; }
+    .gallery-next { right: 16px; }
+
+    .gallery-prev:hover,
+    .gallery-next:hover {
+      background: #fff;
+      border-color: var(--line-strong);
+    }
+
+    @media (max-width: 1040px) {
+      .page {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .profile-card {
+        grid-template-columns: 112px minmax(0, 1fr);
+        align-items: start;
+      }
+
+      .upcoming-card,
+      .info-list,
+      .sidebar-actions {
+        grid-column: 1 / -1;
+      }
+
+      .sidebar-footer {
+        display: none;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 22px;
+      }
+
+      .topbar-brand {
+        white-space: normal;
+      }
+
+      .content {
+        padding-top: 42px;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .snapshot,
+      .research-grid,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .sidebar {
+        padding: 22px;
+      }
+
+      .profile-card {
+        grid-template-columns: 88px minmax(0, 1fr);
+        gap: 16px;
+      }
+
+      .portrait {
+        width: 88px;
+        height: 88px;
+      }
+
+      .name-block h1 {
+        font-size: 24px;
+      }
+
+      .role {
+        font-size: 13px;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+
+      .content {
+        padding: 32px 18px 54px;
+      }
+
+      .hero h2 {
+        font-size: clamp(36px, 12vw, 48px);
+      }
+
+      .hero-text {
+        font-size: 16px;
+      }
+
+      .snapshot-item {
+        min-height: 108px;
+      }
+
+      .section-head,
+      .paper,
+      .award,
+      .detail-row,
+      .service-row,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head h3 {
+        font-size: clamp(30px, 10vw, 42px);
+      }
+
+      .gallery-carousel {
+        height: 280px;
+      }
+
+      .gallery-card {
+        width: 80%;
+      }
+
+      .award-rank {
+        justify-self: start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="page">
+    <aside class="sidebar" aria-label="Profile">
+      <div class="profile-card">
+        <div class="portrait">
+          <img src="assets/portrait.jpg" alt="Portrait of Jincheng Li">
+        </div>
+
+        <div class="name-block">
+          <h1>Jincheng Li <span class="cn">理锦诚</span></h1>
+          <p class="role">Third-year undergraduate student at the School of Artificial Intelligence and Computer Science, Nantong University.</p>
+        </div>
+
+        <div class="upcoming-card">
+          <div class="upcoming-header">
+            <span class="upcoming-dot"></span>
+            <span class="upcoming-label">Upcoming Journey</span>
+          </div>
+          <p class="upcoming-text"><strong>June 12-14, 2026 · USTC, China</strong><br>If you are also in USTC and would like to have a chat over a cup of coffee, feel free to contact me! 👋☕</p>
+        </div>
+
+        <ul class="info-list">
+          <li>
+            <span class="label">Research</span>
+            <span class="value" style="display:grid;gap:3px">
+              <b style="font-size:14px;font-weight:650;color:var(--ink)">Medical Image Analysis</b>
+              <b style="font-size:14px;font-weight:650;color:var(--ink)">Multimodal Learning</b>
+            </span>
+          </li>
+        </ul>
+
+        <div class="sidebar-actions">
+          <a href="mailto:2330110412@stmail.ntu.edu.cn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg>
+            Email
+          </a>
+          <a href="https://github.com/li00000011">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <a href="https://orcid.org/0009-0008-1858-8048">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 01-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-1.397-.759-3.722-3.853-3.722h-2.466z"/></svg>
+            ORCID
+          </a>
+        </div>
+      </div>
+
+      <p class="sidebar-footer">© 2026 Jincheng Li. All Rights Reserved.</p>
+    </aside>
+
+    <main class="main" id="main">
+      <header class="topbar">
+        <nav class="nav" aria-label="Main navigation">
+          <a class="active" href="#about">About</a>
+          <a href="#service">Service</a>
+          <a href="#research">Research</a>
+          <a href="#publications">Publications</a>
+          <a href="#awards">Awards</a>
+          <a href="#gallery">Gallery</a>
+        </nav>
+      </header>
+
+      <div class="content">
+        <section class="hero" id="about" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <h2 id="hero-title">Hi there! <span>Nice to meet you 👋</span></h2>
+            <p class="hero-text">I'm a third-year undergrad at School of Artificial Intelligence and Computer Science, Nantong University, working on Medical Image Analysis and Multimodal Learning with Lili Zhao. Always happy to connect!</p>
+            <div class="hero-actions">
+              <a class="button primary" href="#publications">View publications</a>
+              <a class="button secondary" href="mailto:2330110412@stmail.ntu.edu.cn">Get in touch</a>
+            </div>
+          </div>
+
+          <div class="snapshot" aria-label="Profile highlights">
+            <div class="snapshot-item">
+              <strong>5</strong>
+              <span>Selected publications</span>
+            </div>
+            <div class="snapshot-item">
+              <strong>MICCAI</strong>
+              <span>Reviewer and student member</span>
+            </div>
+            <div class="snapshot-item">
+              <strong>Top 1%</strong>
+              <span>CS Stars of Innovation</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="service" aria-labelledby="service-title">
+          <div class="section-head">
+            <span class="section-index">01 · Service</span>
+            <div>
+              <h3 id="service-title">Giving back to the community.</h3>
+              <p>Reviewing, memberships, and other ways I contribute.</p>
+            </div>
+          </div>
+
+          <div class="panel service-list">
+            <div class="service-row">
+              <strong>Review</strong>
+              <ul>
+                <li>Conference Reviewer, MICCAI 2026</li>
+                <li>Conference Reviewer, MICCAI 2025</li>
+                <li>Conference Reviewer, PRCV 2026</li>
+                <li>Journal Reviewer, Journal of Supercomputing (JoSC)</li>
+                <li>Journal Reviewer, Journal of Traffic and Transportation Engineering - English Edition (JTTE)</li>
+              </ul>
+            </div>
+            <div class="service-row">
+              <strong>Member</strong>
+              <ul>
+                <li>Student Member, MICCAI</li>
+                <li>Student Member, CAAI</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="research" aria-labelledby="research-title">
+          <div class="section-head">
+            <span class="section-index">02 · Research</span>
+            <div>
+              <h3 id="research-title">Where I look at pixels.</h3>
+              <p>What I work on, from pathology to multimodal learning.</p>
+            </div>
+          </div>
+
+          <div class="research-grid">
+            <article class="research-card">
+              <span>Medical AI</span>
+              <div>
+                <h4>Medical image analysis</h4>
+                <p>Learning visual representations for clinical imaging tasks with attention to precision and reliability.</p>
+              </div>
+            </article>
+            <article class="research-card">
+              <span>Multimodal</span>
+              <div>
+                <h4>Multimodal learning</h4>
+                <p>Fusion and alignment across visual, temporal, and semantic signals for medical and human-centered AI.</p>
+              </div>
+            </article>
+            <article class="research-card">
+              <span>Academic growth</span>
+              <div>
+                <h4>Research practice</h4>
+                <p>Building publication-ready systems while contributing to peer review and academic communities.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="publications" aria-labelledby="publications-title">
+          <div class="section-head">
+            <span class="section-index">03 · Publications</span>
+            <div>
+              <h3 id="publications-title">Selected papers.</h3>
+              <p>Conference and journal publications. Author order and links are preserved from the original sources.</p>
+            </div>
+          </div>
+
+          <div class="paper-list">
+            <article class="paper">
+              <div class="paper-no">01</div>
+              <div>
+                <span class="venue">MICCAI 2025 · CCF-B</span>
+                <h4>High-Precision Mixed Feature Fusion Network Using Hypergraph Computation for Cervical Abnormal Cell Detection</h4>
+                <p class="authors"><b>Jincheng Li</b>, Danyang Dong, Menglin Zheng, Jingbo Zhang, Yueqin Hang, Lichi Zhang, and Lili Zhao</p>
+                <div class="paper-links">
+                  <a href="https://doi.org/10.1007/978-3-032-04927-8_24">Springer</a>
+                  <a href="https://github.com/ddddoreen/HyperMF2-Cell-Detection">Code</a>
+                  <a href="https://arxiv.org/abs/2508.16140">arXiv</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-no">02</div>
+              <div>
+                <span class="venue">MICCAI 2026 · CCF-B · Early Accept</span>
+                <h4>Two-Stage Cross-Domain Cervical Abnormality Screening with Cytopathological Image Synthesis and Knowledge Distillation</h4>
+                <p class="authors"><b>Jincheng Li</b>*, Yuzhi He*, Yihui Zhan, Xinmei Zhang, Yifei Sun, Zelin Liu, Lichi Zhang, Minye Shao, and Lili Zhao</p>
+                <div class="paper-links">
+                  <a href="https://conferences.miccai.org/2026/en/default.asp">MICCAI 2026</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-no">03</div>
+              <div>
+                <span class="venue">Sensors 2025 · JCR Q2</span>
+                <h4>Cross-Scale Hypergraph Neural Networks with Inter-Intra Constraints for Mitosis Detection</h4>
+                <p class="authors"><b>Jincheng Li</b>, Danyang Dong, Yihui Zhan, Guanren Zhu, Hengshuo Zhang, Xing Xie, and Lingling Yang</p>
+                <div class="paper-links">
+                  <a href="https://www.mdpi.com/1424-8220/25/14/4359">Paper</a>
+                  <a href="https://doi.org/10.3390/s25144359">DOI</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-no">04</div>
+              <div>
+                <span class="venue">Journal of Imaging 2025 · JCR Q2</span>
+                <h4>DynMultiDep: A Dynamic Multimodal Fusion and Multi-Scale Time Series Modeling Approach for Depression Detection</h4>
+                <p class="authors"><b>Jincheng Li</b>, Menglin Zheng, Jiongyi Yang, Yihui Zhan, and Xing Xie</p>
+                <div class="paper-links">
+                  <a href="https://www.mdpi.com/2313-433X/12/1/29">Paper</a>
+                  <a href="https://doi.org/10.3390/jimaging12010029">DOI</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper">
+              <div class="paper-no">05</div>
+              <div>
+                <span class="venue">Sensors 2024 · JCR Q2</span>
+                <h4>PC-CS-YOLO: High-Precision Obstacle Detection for Visually Impaired Safety</h4>
+                <p class="authors"><b>Jincheng Li</b>, Menglin Zheng, Danyang Dong, and Xing Xie</p>
+                <div class="paper-links">
+                  <a href="https://www.mdpi.com/1424-8220/25/2/534">Paper</a>
+                  <a href="https://doi.org/10.3390/s25020534">DOI</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="awards" aria-labelledby="awards-title">
+          <div class="section-head">
+            <span class="section-index">04 · Awards</span>
+            <div>
+              <h3 id="awards-title">Some recognition.</h3>
+              <p>Some highlights from competitions and university.</p>
+            </div>
+          </div>
+
+          <div class="award-list">
+            <article class="award">
+              <div>
+                <h4>China International College Students' Innovation Competition</h4>
+                <p>Provincial Gold Medal. Role: Project Leader.</p>
+              </div>
+              <span class="award-rank">Gold Medal</span>
+            </article>
+            <article class="award">
+              <div>
+                <h4>Nantong University CS Stars of Innovation</h4>
+                <p>Recognition for computer science innovation.</p>
+              </div>
+              <span class="award-rank">Top 1%</span>
+            </article>
+            <article class="award">
+              <div>
+                <h4>"Ruihua Cup" Top 15 Students in Nantong University</h4>
+                <p>University-level distinction.</p>
+              </div>
+              <span class="award-rank">Top 0.01%</span>
+            </article>
+          </div>
+        </section>
+
+        <section id="gallery" aria-labelledby="gallery-title">
+          <div class="section-head">
+            <span class="section-index">05 · Gallery</span>
+            <div>
+              <h3 id="gallery-title">Moments.</h3>
+              <p>Snapshots from conferences, labs, and daily life.</p>
+            </div>
+          </div>
+
+          <div class="gallery-carousel">
+            <div class="gallery-track">
+              <div class="gallery-card" data-index="0">
+                <div class="gallery-img-wrap">
+                  <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=academic%20conference%20hall%20with%20researchers%20presenting%20medical%20imaging%20research%20on%20large%20screen%2C%20professional%20photography&image_size=landscape_4_3" alt="MICCAI Conference">
+                  <div class="gallery-overlay">
+                    <h4>MICCAI 2025</h4>
+                    <span>Daejeon, South Korea</span>
+                  </div>
+                </div>
+              </div>
+              <div class="gallery-card" data-index="1">
+                <div class="gallery-img-wrap">
+                  <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=university%20research%20lab%20with%20students%20working%20on%20computers%20and%20medical%20image%20displays%2C%20bright%20modern%20interior&image_size=landscape_4_3" alt="Research Lab">
+                  <div class="gallery-overlay">
+                    <h4>Lab Meeting</h4>
+                    <span>Nantong University</span>
+                  </div>
+                </div>
+              </div>
+              <div class="gallery-card" data-index="2">
+                <div class="gallery-img-wrap">
+                  <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=group%20photo%20of%20young%20researchers%20at%20academic%20innovation%20competition%20award%20ceremony%2C%20gold%20medal%2C%20formal%20attire&image_size=landscape_4_3" alt="Innovation Competition">
+                  <div class="gallery-overlay">
+                    <h4>Innovation Competition</h4>
+                    <span>Provincial Gold Medal</span>
+                  </div>
+                </div>
+              </div>
+              <div class="gallery-card" data-index="3">
+                <div class="gallery-img-wrap">
+                  <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=beautiful%20university%20campus%20with%20lake%20and%20modern%20buildings%2C%20sunny%20day%2C%20Nantong%20University%20China&image_size=landscape_4_3" alt="Campus">
+                  <div class="gallery-overlay">
+                    <h4>Campus Life</h4>
+                    <span>Nantong, Jiangsu</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button class="gallery-prev" aria-label="Previous">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button class="gallery-next" aria-label="Next">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const navLinks = Array.from(document.querySelectorAll(".nav a"));
+    const sections = navLinks
+      .map((link) => document.querySelector(link.getAttribute("href")))
+      .filter(Boolean);
+
+    function setActive(id) {
+      navLinks.forEach((link) => {
+        link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
+      });
+    }
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        setActive(link.getAttribute("href").slice(1));
+      });
+    });
+
+    function onScroll() {
+      const scrollY = window.scrollY + 120;
+      const atBottom = (window.innerHeight + window.scrollY) >= document.body.scrollHeight - 50;
+      if (atBottom) {
+        setActive(sections[sections.length - 1].id);
+        return;
+      }
+      let current = sections[0].id;
+      for (const section of sections) {
+        const top = section.getBoundingClientRect().top + window.scrollY;
+        if (top <= scrollY) {
+          current = section.id;
+        }
+      }
+      setActive(current);
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    // Gallery Carousel
+    (function() {
+      const cards = document.querySelectorAll('.gallery-card');
+      if (cards.length === 0) return;
+      const total = cards.length;
+      let current = 0;
+      let autoTimer;
+
+      function getOffset(index) {
+        let diff = index - current;
+        if (diff > total / 2) diff -= total;
+        if (diff < -total / 2) diff += total;
+        return diff;
+      }
+
+      function layout() {
+        cards.forEach(function(card, i) {
+          var offset = getOffset(i);
+          var absOffset = Math.abs(offset);
+          var xPercent = -50 + offset * 55;
+          var scale = absOffset === 0 ? 1 : 0.75;
+          var zIndex = 20 - absOffset;
+          var blur = absOffset === 0 ? 0 : 6;
+          var brightness = absOffset === 0 ? 1 : 0.4;
+          var opacity = absOffset <= 2 ? 1 : 0;
+
+          card.style.transform = 'translateX(' + xPercent + '%) scale(' + scale + ')';
+          card.style.zIndex = zIndex;
+          card.style.opacity = opacity;
+          card.style.filter = 'blur(' + blur + 'px) brightness(' + brightness + ')';
+          card.setAttribute('data-active', absOffset === 0 ? 'true' : 'false');
+        });
+      }
+
+      function goTo(index) {
+        current = ((index % total) + total) % total;
+        layout();
+      }
+
+      function next() { goTo(current + 1); }
+      function prev() { goTo(current - 1); }
+
+      cards.forEach(function(card, i) {
+        card.addEventListener('click', function() {
+          if (i !== current) { goTo(i); resetAuto(); }
+        });
+      });
+
+      var prevBtn = document.querySelector('.gallery-prev');
+      var nextBtn = document.querySelector('.gallery-next');
+      if (prevBtn) prevBtn.addEventListener('click', function() { prev(); resetAuto(); });
+      if (nextBtn) nextBtn.addEventListener('click', function() { next(); resetAuto(); });
+
+      function startAuto() { autoTimer = setInterval(next, 4000); }
+      function resetAuto() { clearInterval(autoTimer); startAuto(); }
+
+      layout();
+      startAuto();
+    })();
+  </script>
+</body>
+</html>
