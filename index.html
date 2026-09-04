@@ -107,11 +107,29 @@ body
     table.pub_table tr {
         outline: thin dotted #666666;
     }
-    .papericon {
+	.papericon {
         border-radius: 8px;
         -moz-box-shadow: 3px 3px 6px #888;
         -webkit-box-shadow: 3px 3px 6px #888;
         box-shadow: 3px 3px 6px #888;
+    }
+
+    .institution {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin: 8px 0 14px;
+    }
+    .institution-logo {
+        display: block;
+        width: 150px;
+        height: 64px;
+        object-fit: contain;
+        object-position: left center;
+        flex: 0 0 auto;
+    }
+    .institution-name {
+        margin: 0;
     }
 </style>
 </head>
@@ -151,14 +169,20 @@ body
 			<ul>
 			
 			<li>2023.09-2027.06 &nbsp; &bull;&nbsp; B.E. Degree &nbsp; &bull;&nbsp; Supervisor: <a href="https://ai.ntu.edu.cn/2024/0817/c9718a246568/page.htm"> Lili Zhao</a>.<br></li>
-			<h6>Nantong University, China</h6>
+			<div class="institution">
+				<img class="institution-logo" src="asset/NTU.jpg" alt="Nantong University logo">
+				<h6 class="institution-name">Nantong University, China</h6>
+			</div>
 			</ul>
 
 		<li><strong>Experience</strong></li>
 			<ul>
 			
 			<li>2027.09-～ &nbsp; &bull;&nbsp; Research Intern &nbsp; &bull;&nbsp; Supervisor: <a href="https://openreview.net/profile?id=~Rongzhao_Zhang1"> Rongzhao Zhang</a>.<br></li>
-			<h6>Shanghai Artificial Intelligence Laboratory, China</h6>
+			<div class="institution">
+				<img class="institution-logo" src="asset/AILAB.png" alt="Shanghai Artificial Intelligence Laboratory logo">
+				<h6 class="institution-name">Shanghai Artificial Intelligence Laboratory, China</h6>
+			</div>
 			</ul>
 
 		
@@ -257,7 +281,7 @@ body
 <!--			<td><div id="clustrmaps-widget" style="width:40%">-->
 <!--			<script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=3oEqJsYfiOcdbboZSNw7vF51Tg07i-AMnmtYt_vxKlU&cl=ffffff&w=a"></script>-->
 <!--			</div></td>-->
-			&copy; Jincheng Li | Last updated: 4 August 2026
+			&copy; Jincheng Li | Last updated: 29 August 2026
 				<div class="text">
                     <b>Acknowledgement:</b> This page is based on <a href="https://merrical.github.io/">this template</a>
                     by <a href="https://merrical.github.io/"> Zehui Liao </a>
